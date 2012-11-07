@@ -1,0 +1,154 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+
+html, html body{
+  background-color:#dddddd;
+  background-color: #C0DEED;
+}
+
+/* line 3, ../sass/box.scss */
+.box {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; 
+  /** -webkit-box-shadow: 0px 0px 5px #333333;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333; **/
+  padding: 10px;
+  margin: 0 0 20px 0;
+  background-color: white;
+  border: 1px solid #cccccc;
+}
+/* line 9, ../sass/box.scss */
+.box .title {
+  font-size: 12px;
+  margin: 0 -10px;
+  padding: 0 10px;
+  margin-bottom: 8px;
+  color: #999;
+  line-height: 100%;
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 8px;
+}
+
+.box.left{
+  float: left;
+  width: 800px;
+}
+.box.right{
+  float: right;
+  width: 300px;
+}
+
+/*** btn ***************************/
+/**
+.btn{
+  cursor: pointer;
+  vertical-align: top;
+  overflow: visible;
+  white-space: nowrap;
+  width: auto;
+  _width: 0;
+  padding: 2px 8px;
+  background: #EEE;
+  border: 1px solid #999;
+  border-bottom: 1px solid #888;
+  color: #333 !important;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none !important;
+  text-shadow: 0 1px 0 white;
+  display: -moz-inline-stack;
+  display: inline-block;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+  background-image: -ms-linear-gradient(top, #F5F6F7 0%, #DDD 100%);
+  background-image: -moz-linear-gradient(top, #F5F6F7 0%, #DDD 100%);
+  background-image: -o-linear-gradient(top, #F5F6F7 0%, #DDD 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F5F6F7), color-stop(1, #DDD));
+  background-image: -webkit-linear-gradient(top, #F5F6F7 0%, #DDD 100%);
+  background-image: linear-gradient(top, #F5F6F7 0%, #DDD 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f6f7', endColorstr='#dddddd');
+  -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+  -khtml-box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.btn-green{
+  background: #67A54B;
+  border-color: #51823B;
+  border-bottom-color: #467033;
+  color: white !important;
+  text-shadow: 0 1px 0 #51823B;
+  background-image: -ms-linear-gradient(top, #6EAF50 0%, #67A54B 100%);
+  background-image: -moz-linear-gradient(top, #6EAF50 0%, #67A54B 100%);
+  background-image: -o-linear-gradient(top, #6EAF50 0%, #67A54B 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #6EAF50), color-stop(1, #67A54B));
+  background-image: -webkit-linear-gradient(top, #6EAF50 0%, #67A54B 100%);
+  background-image: linear-gradient(top, #6EAF50 0%, #67A54B 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6eaf50', endColorstr='#67a54b');
+}
+.btn-blue{
+  background: #506DAB;
+  border: 1px solid #405788;
+  border-bottom: 1px solid #3C5281;
+  color: white !important;
+  text-shadow: 0 1px 0 #405788;
+  background-image: -ms-linear-gradient(top, #5975B1 0%, #506DAB 100%);
+  background-image: -moz-linear-gradient(top, #5975B1 0%, #506DAB 100%);
+  background-image: -o-linear-gradient(top, #5975B1 0%, #506DAB 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #5975B1), color-stop(1, #506DAB));
+  background-image: -webkit-linear-gradient(top, #5975B1 0%, #506DAB 100%);
+  background-image: linear-gradient(top, #5975B1 0%, #506DAB 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5975b1', endColorstr='#506dab');
+}
+.btn-blue:hover {
+  background: #4B66A1;
+  background-image: -ms-linear-gradient(top, #506DAB 0%, #4B66A1 100%);
+  background-image: -moz-linear-gradient(top, #506DAB 0%, #4B66A1 100%);
+  background-image: -o-linear-gradient(top, #506DAB 0%, #4B66A1 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #506DAB), color-stop(1, #4B66A1));
+  background-image: -webkit-linear-gradient(top, #506DAB 0%, #4B66A1 100%);
+  background-image: linear-gradient(top, #506DAB 0%, #4B66A1 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#506dab', endColorstr='#4b66a1');
+}
+.btn:hover {
+  background: #FBFBFB;
+  background-image: -ms-linear-gradient(top, #F5F6F7 0%, #E6E6E6 100%);
+  background-image: -moz-linear-gradient(top, #F5F6F7 0%, #E6E6E6 100%);
+  background-image: -o-linear-gradient(top, #F5F6F7 0%, #E6E6E6 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F5F6F7), color-stop(1, #E6E6E6));
+  background-image: -webkit-linear-gradient(top, #F5F6F7 0%, #E6E6E6 100%);
+  background-image: linear-gradient(top, #F5F6F7 0%, #E6E6E6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f6f7', endColorstr='#e6e6e6');
+}
+.btn-green:hover {
+  background: #609A46;
+  background-image: -ms-linear-gradient(top, #67A54B 0%, #609A46 100%);
+  background-image: -moz-linear-gradient(top, #67A54B 0%, #609A46 100%);
+  background-image: -o-linear-gradient(top, #67A54B 0%, #609A46 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #67A54B), color-stop(1, #609A46));
+  background-image: -webkit-linear-gradient(top, #67A54B 0%, #609A46 100%);
+  background-image: linear-gradient(top, #67A54B 0%, #609A46 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#67a54b', endColorstr='#609a46');
+}
+**/

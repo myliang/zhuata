@@ -1,0 +1,321 @@
+# zh
+zh-CN:
+  menus: 
+    compare: "比价"
+    fiction: "小说"
+    picture: "趣图"
+    blog: "blog"
+  models: &models
+    user: "用户"
+    blog: "blog"
+  attributes: &attributes
+    blog:
+      title: "标题"
+      text: "内容"
+      tags: "标签"
+      tags_tip: "添加标签，用逗号分割"
+    user:
+      avatar_file_size: "头像的大小"
+      settings:
+        title: "用户设置"
+        edit: "修改基本信息"
+        edit_pwd: "修改密码"
+        edit_avatar: "上传头像"
+      name: "昵称"
+      email: "电子邮件"
+      password: "密码"
+      real_name: "真是姓名"
+      location: "所在城市"
+      website: "个人主页"
+      bio: "个人简介"
+      new_password: "新密码"
+      current_password: "当前密码"
+      password_confirmation: "确认密码"
+      state: "状态"
+      remember_me: "记住密码"
+  date:
+    abbr_day_names:
+    - 日
+    - 一
+    - 二
+    - 三
+    - 四
+    - 五
+    - 六
+    abbr_month_names:
+    - 
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 星期日
+    - 星期一
+    - 星期二
+    - 星期三
+    - 星期四
+    - 星期五
+    - 星期六
+    formats:
+      default: ! '%Y-%m-%d'
+      long: ! '%Y年%b%d日'
+      short: ! '%b%d日'
+    month_names:
+    - 
+    - 一月
+    - 二月
+    - 三月
+    - 四月
+    - 五月
+    - 六月
+    - 七月
+    - 八月
+    - 九月
+    - 十月
+    - 十一月
+    - 十二月
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 大约一小时
+        other: 大约 %{count} 小时
+      about_x_months:
+        one: 大约一个月
+        other: 大约 %{count} 个月
+      about_x_years:
+        one: 大约一年
+        other: 大约 %{count} 年
+      almost_x_years:
+        one: 接近一年
+        other: 接近 %{count} 年
+      half_a_minute: 半分钟
+      less_than_x_minutes:
+        one: 不到一分钟
+        other: 不到 %{count} 分钟
+      less_than_x_seconds:
+        one: 不到一秒
+        other: 不到 %{count} 秒
+      over_x_years:
+        one: 一年多
+        other: ! '%{count} 年多'
+      x_days:
+        one: 一天
+        other: ! '%{count} 天'
+      x_minutes:
+        one: 一分钟
+        other: ! '%{count} 分钟'
+      x_months:
+        one: 一个月
+        other: ! '%{count} 个月'
+      x_seconds:
+        one: 一秒
+        other: ! '%{count} 秒'
+    prompts:
+      day: 日
+      hour: 时
+      minute: 分
+      month: 月
+      second: 秒
+      year: 年
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: 必须是可被接受的
+      blank: 不能为空字符
+      confirmation: 与确认值不匹配
+      empty: 不能留空
+      equal_to: 必须等于 %{count}
+      even: 必须为双数
+      exclusion: 是保留关键字
+      greater_than: 必须大于 %{count}
+      greater_than_or_equal_to: 必须大于或等于 %{count}
+      inclusion: 不包含于列表中
+      invalid: 是无效的
+      less_than: 必须小于 %{count}
+      less_than_or_equal_to: 必须小于或等于 %{count}
+      not_a_number: 不是数字
+      not_an_integer: 必须是整数
+      odd: 必须为单数
+      record_invalid: ! '验证失败: %{errors}'
+      taken: 已经被使用
+      too_long: 过长（最长为 %{count} 个字符）
+      too_short: 过短（最短为 %{count} 个字符）
+      wrong_length: 长度非法（必须为 %{count} 个字符）
+    template:
+      body: 如下字段出现错误：
+      header:
+        one: 有 1 个错误发生导致「%{model}」无法被保存。
+        other: 有 %{count} 个错误发生导致「%{model}」无法被保存。
+  helpers:
+    select:
+      prompt: 请选择
+    submit:
+      create: 新建%{model}
+      save: 保存
+      update: 更新
+      edit: 编辑%{model}
+      delete: 删除%{model}
+  number:
+    currency:
+      format:
+        delimiter: ! ','
+        format: ! '%u %n'
+        precision: 2
+        separator: .
+        significant: false
+        strip_insignificant_zeros: false
+        unit: CN¥
+    format:
+      delimiter: ! ','
+      precision: 3
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion: 十亿
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: false
+        strip_insignificant_zeros: false
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ! ', 和 '
+      two_words_connector: ! ' 和 '
+      words_connector: ! ', '
+  time:
+    am: 上午
+    formats:
+      default: ! '%Y年%b%d日 %A %H:%M:%S %Z'
+      long: ! '%Y年%b%d日 %H:%M'
+      short: ! '%b%d日 %H:%M'
+    pm: 下午
+  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors
+  mongo_mapper:
+    errors:
+      <<: *errors
+    models:
+      <<: *models
+    attributes:
+      <<: *attributes
+    
+  will_paginate:
+    next_label: 下一页
+    page_entries_info:
+      multi_page: 正显示%{model}的第%{from}至第%{to}条记录(共%{count}条记录)
+      multi_page_html: 正显示%{model}的第<b>%{from}</b>至第<b>%{to}</b>条记录(共<b>%{count}</b>条记录)
+      single_page:
+        one: 正显示1条%{model}记录
+        other: 正显示所有共%{count}条%{model}记录
+        zero: 暂无%{model}记录
+      single_page_html:
+        one: 正显示<b>1</b>条%{model}记录
+        other: 正显示所有共<b>%{count}</b>条%{model}记录
+        zero: 暂无%{model}记录
+    page_gap: …
+    previous_label: 上一页
+  devise:
+    base:
+      sign_in: 登录
+      sign_up: 注册
+      remember_me: 记住登录状态
+      forget_password: 忘记密码
+      reset_password: 找回密码
+      change_password: 修改密码
+      sign_out: 退出
+      update: 更新
+      upload: 上传文件
+    confirmations:
+      confirmed: 您的帐号已经确认，您现在已登录.
+      send_instructions: 几分钟后，您将收到确认帐号的电子邮件.
+      send_paranoid_instructions: 如果您的邮箱存在于我们的数据库中，您将收到一封确认账号的邮件.
+    failure:
+      already_authenticated: 您已经登录.
+      inactive: 您还没有激活帐户.
+      invalid: 邮箱或密码错误
+      invalid_token: 认证码无效.
+      locked: 您的帐号已被锁定.
+      timeout: 您已登录超时，请重新登录.
+      unauthenticated: 继续操作前请注册或者登录.
+      unconfirmed: 继续操作前请先确认您的帐号.
+    mailer:
+      confirmation_instructions:
+        subject: 确认信息
+      reset_password_instructions:
+        subject: 重置密码信息
+      unlock_instructions:
+        subject: 解锁信息
+    omniauth_callbacks:
+      failure: 因为%{reason}，所以您无法从%{kind}获得授权.
+      success: 成功地从%{kind}获得授权.
+    passwords:
+      send_instructions: 几分钟后，您将收到重置密码的电子邮件.
+      send_paranoid_instructions: 如果您的邮箱存在于我们的数据库中，您将收到一封找回密码的邮件.
+      updated: 您的密码已修改成功，您现在已登录.
+      updated_not_active: 您的密码已修改成功.
+    registrations:
+      destroyed: 再见！您的帐户已成功注销。我们希望很快可以再见到您.
+      signed_up: 欢迎您！您已注册成功.
+      signed_up_but_inactive: 谢谢您！然而您的账号还未被激活，在这之前无法登陆。
+      signed_up_but_locked: 谢谢您！然而您的账号已被锁定，无法登陆。
+      signed_up_but_unconfirmed: 谢谢您！一封确认邮件已经发至您的邮箱，请点击其中的链接激活您的账号。
+      update_needs_confirmation: 新的账号信息已成功提交，一封确认邮件已经发至您的邮箱，请点击其中的链接以使您的新E-mail地址生效。
+      updated: 帐号资料更新成功.
+    sessions:
+      signed_in: 登录成功.
+      signed_out: 退出成功.
+    unlocks:
+      send_instructions: 几分钟后，您将收到一封解锁帐号的邮件.
+      send_paranoid_instructions: 如果您的邮箱存在于我们的数据库中，您将收到一封解锁账号的邮件.
+      unlocked: 您的帐号已成功解锁，您现在已登录.
+  errors:
+    messages:
+      already_confirmed: 已经确认，请重新登录.
+      expired: 您已过期，请重新申请
+      not_found: 没有找到
+      not_locked: 未锁定
+      not_saved:
+        one: ! '因为1个错误导致此%{resource}保存失败:'
+        other: ! '因为%{count}个错误导致此%{resource}保存失败:'
