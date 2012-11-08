@@ -1,6 +1,7 @@
 Zhuata::Application.routes.draw do
 
   # match "/logout" => "devise/sessions#destroy"
+  match "users/:id" => "users#show", :as => :user
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
