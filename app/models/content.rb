@@ -2,15 +2,33 @@
 class Content
   include MongoMapper::Document
 
+  TEXT_CUT_LENGTH = 200
+
   belongs_to :user
 
   many :comments, :as => :commentable
   key :tags, Array
+  key :read_counter, Integer, :default => 0
+
+  # content
+  key :title, String, :required => true
+  key :text, String, :required => true
 
   # update attibute add_tags and remove_tags is Array
   attr_accessor :old_tags
 
   timestamps!
+
+  def short_text
+    # ary = text.scan(/([^<>]*)<br(\/)?>/)
+    ary = text.scan(/>([^<>]*)</)
+    content = ary.length > 0 ? ary.map{|ele| ele[0]}.join : text
+    "#{content.length > TEXT_CUT_LENGTH ? content[0, TEXT_CUT_LENGTH] : content}..." 
+  end
+
+  def update_read_counter
+    self.increment(:read_counter => 1)
+  end
 
   before_save do |model|
     model.tags = Content.tags_to_a(model.tags)
@@ -33,7 +51,8 @@ class Content
 
   class << self
     def tag_class(model)
-      "#{model.class.name}Tag".constantize
+      suffix = model.instance_of?(Content) ? "" : model.class.name
+      "#{suffix}Tag".constantize
     end
     def tags_to_a(tags)
       return tags if tags.empty?

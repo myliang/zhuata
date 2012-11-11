@@ -1,7 +1,6 @@
 Zhuata::Application.routes.draw do
 
   # match "/logout" => "devise/sessions#destroy"
-  match "users/:id" => "users#show", :as => :user
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -28,10 +27,11 @@ Zhuata::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :compares, :fictions, :pictures, :blogs
+  resources :compares, :fictions, :pictures, :blogs, :comments
 
   # match paginate url
   match 'blogs/tag/:tags' => 'blogs#tag', :as => :blog_tags
+  match ":id" => "users#show", :as => :user
 
   # Sample resource route with options:
   #   resources :products do

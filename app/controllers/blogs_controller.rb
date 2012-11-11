@@ -14,7 +14,11 @@ class BlogsController < ApplicationController
 
   def new; end
 
-  def show; end
+  def show 
+    @blog.update_read_counter
+    @comment = Comment.new(:commentable => @blog)
+    puts "::comment:::#{@comment.to_json}"
+  end
 
   def edit; end
 

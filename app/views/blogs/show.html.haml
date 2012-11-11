@@ -9,6 +9,14 @@
         %ul.tag
           - for tag in @blog.tags
             %li=link_to tag, blog_tags_path(tag)
-        .bottom= time_ago_in_words @blog.created_at
+        .bottom
+          =link_to user.name, user_path(user.id) 
+          •
+          %span= time_ago_in_words @blog.created_at
+          •
+          %span
+            =t_submit("read")
+            = "（#{@blog.read_counter}）"
     .item-body
       = raw @blog.text
+    =render :partial => "comments/new"

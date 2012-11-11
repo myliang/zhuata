@@ -9,6 +9,10 @@ module ApplicationHelper
     I18n.t("helpers.submit.#{action}", :model => t("models.#{model.class.to_s.downcase}"))
   end
 
+  def t_submit(action)
+    I18n.t("helpers.submit.#{action}")
+  end
+
   def menus
     controller_name = params["controller"]
     content_tag :ul, :class => "nav" do

@@ -167,6 +167,8 @@ zh-CN:
       update: 更新
       edit: 编辑%{model}
       delete: 删除%{model}
+      read: 阅读
+      comment: 评论
   number:
     currency:
       format:
