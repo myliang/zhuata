@@ -15,7 +15,7 @@ class Content
   key :text, String, :required => true
 
   # update attibute add_tags and remove_tags is Array
-  attr_accessor :old_tags
+  attr_accessor :new_tags
 
   timestamps!
 
@@ -31,16 +31,17 @@ class Content
   end
 
   before_save do |model|
-    model.tags = Content.tags_to_a(model.tags)
+    model.tags = Content.tags_to_a(model.new_tags)
   end
 
   before_create do |model|
+    puts ":::::::::before_create"
     Content.tag_class(model).update_counter(model.tags, 1)
   end
 
   before_update do |model|
-    new_tags = model.tags
-    old_tags = Content.tags_to_a(model.old_tags)
+    old_tags = model.tags
+    new_tags = Content.tags_to_a(model.new_tags)
     Content.tag_class(model).update_counter(new_tags - old_tags, 1)
     Content.tag_class(model).update_counter(old_tags - new_tags, -1)
   end
@@ -55,8 +56,8 @@ class Content
       "#{suffix}Tag".constantize
     end
     def tags_to_a(tags)
-      return tags if tags.empty?
-      tags[0].split(/,|，/)
+      return [] if tags.nil?
+      tags.split(/,|，/)
     end
   end
 
