@@ -17,7 +17,6 @@ class BlogsController < ApplicationController
   def show 
     @blog.update_read_counter
     @comment = Comment.new(:commentable => @blog)
-    puts "::comment:::#{@comment.to_json}"
   end
 
   def edit; end

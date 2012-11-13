@@ -3,6 +3,8 @@ require 'spork'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
+CALL_TIMES = 2
+
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
@@ -24,7 +26,7 @@ end
 Spork.each_run do
   # This code will be run each time you run your specs.
   load "#{Rails.root}/config/routes.rb"
-  Dir["#{Rails.root}/app/**/**.rb"].each { |f| load f }
+  Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
 end
 
 # --- Instructions ---

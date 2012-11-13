@@ -35,7 +35,6 @@ class Content
   end
 
   before_create do |model|
-    puts ":::::::::before_create"
     Content.tag_class(model).update_counter(model.tags, 1)
   end
 

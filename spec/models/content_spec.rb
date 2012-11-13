@@ -32,9 +32,14 @@ describe Content do
 
   describe "instance methods"do 
     let(:content) { 
-      Tag.should_receive(:update_counter).once
+      Tag.should_receive(:update_counter).exactly(1 * CALL_TIMES).times
       FactoryGirl.create(:content) 
     }
+
+    it "update Tag.update_counter should at least 2 times" do
+      Tag.should_receive(:update_counter).exactly(2 * CALL_TIMES).times
+      content.update_attributes(:title => "new title").should be_true
+    end
 
     it "errors should be empty" do
       content.errors.should be_empty
@@ -51,11 +56,6 @@ describe Content do
     it "tags shold be include 2 element" do
       content.tags.should have(3).items
     end
-
-    # stub
-    it "before_create should be class Tag.update_counter" do
-    end
-
 
     it "update_read_counter should be read_counter + 1" do
       content.read_counter.should == 0
