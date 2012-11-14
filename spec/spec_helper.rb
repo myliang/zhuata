@@ -27,6 +27,7 @@ Spork.each_run do
   # This code will be run each time you run your specs.
   load "#{Rails.root}/config/routes.rb"
   Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
+  Dir["#{Rails.root}/lib/**/*.rb"].each { |f| load f }
 end
 
 # --- Instructions ---

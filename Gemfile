@@ -31,7 +31,7 @@ gem 'sunspot_mongo_mapper'
 # bootstrap
 gem 'twitter-bootstrap-rails'
 
-# paginate
+# unless mongodb paginate
 # gem 'will_paginate'
 
 # rspec test

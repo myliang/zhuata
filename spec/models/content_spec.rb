@@ -41,6 +41,10 @@ describe Content do
       content.update_attributes(:title => "new title").should be_true
     end
 
+    it "read_counter should be default 0" do
+      content.read_counter.should == 0
+    end
+
     it "errors should be empty" do
       content.errors.should be_empty
     end
@@ -63,21 +67,6 @@ describe Content do
       Content.find(content.id).read_counter.should == 1
     end
 
-    describe "short_text" do
-      it "should be ge TEXT_CUT_LENGTH" do
-        content.short_text.length.should <= Content::TEXT_CUT_LENGTH + 3
-      end
-
-      it "should be eq text length" do
-        content.text = "ni hao world"
-        content.short_text.length.should == content.text.length + 3
-      end
-
-      it "should not be include html tag" do
-        content.text = "<p>you are friends</p>"
-        content.short_text.should == "you are friends..."
-      end
-    end
     after :each do
       content.user.destroy
       content.destroy

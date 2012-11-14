@@ -2,8 +2,6 @@
 class Content
   include MongoMapper::Document
 
-  TEXT_CUT_LENGTH = 200
-
   belongs_to :user
 
   many :comments, :as => :commentable
@@ -18,13 +16,6 @@ class Content
   attr_accessor :new_tags
 
   timestamps!
-
-  def short_text
-    # ary = text.scan(/([^<>]*)<br(\/)?>/)
-    ary = text.scan(/>([^<>]*)</)
-    content = ary.length > 0 ? ary.map{|ele| ele[0]}.join : text
-    "#{content.length > TEXT_CUT_LENGTH ? content[0, TEXT_CUT_LENGTH] : content}..." 
-  end
 
   def update_read_counter
     self.increment(:read_counter => 1)
@@ -43,10 +34,6 @@ class Content
     new_tags = Content.tags_to_a(model.new_tags)
     Content.tag_class(model).update_counter(new_tags - old_tags, 1)
     Content.tag_class(model).update_counter(old_tags - new_tags, -1)
-  end
-
-  def tags_str
-    tags.join(',')
   end
 
   class << self
