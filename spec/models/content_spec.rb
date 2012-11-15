@@ -68,8 +68,8 @@ describe Content do
     end
 
     after :each do
-      content.user.destroy
-      content.destroy
+      Content.destroy_all
+      User.destroy_all
     end
   end
 

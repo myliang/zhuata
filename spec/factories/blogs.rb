@@ -4,6 +4,6 @@ FactoryGirl.define do
     text "ruby de 个性文章"
     title "ruby"
     tags "ruby,rails,language"
-    association :user
+    user
   end
 end

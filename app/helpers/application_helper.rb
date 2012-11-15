@@ -24,13 +24,6 @@ module ApplicationHelper
       end.join.html_safe
     end
 
-    # html = <<-HTML
-    #   <ul class="nav">
-    #     #{content}
-    #   </ul>
-    # HTML
-
-    # content.html_safe
   end
 
   def edit_user_tabs

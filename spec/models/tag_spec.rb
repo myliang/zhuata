@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Tag do
+  # lazy load
   let(:tag) { FactoryGirl.create(:tag) }
 
   describe "instance methods" do
@@ -27,7 +28,7 @@ describe Tag do
 
         it "with [java, rails] and have 3 items" do
           Tag.update_counter(["java", "rails"], 1)
-          Tag.all.should have(3).items
+          Tag.all.should have(2).items
         end
       end
     end
@@ -35,6 +36,6 @@ describe Tag do
 
   end
   after :each do
-    tag.destroy
+    Tag.destroy_all
   end
 end

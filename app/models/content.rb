@@ -4,21 +4,23 @@ class Content
 
   belongs_to :user
 
-  many :comments, :as => :commentable
+  many :comments, as: :commentable
   key :tags, Array
-  key :read_counter, Integer, :default => 0
+  key :read_counter, Integer, default: 0
 
   # content
-  key :title, String, :required => true
-  key :text, String, :required => true
+  key :title, String, required: true
+  key :text, String, required: true
 
   # update attibute add_tags and remove_tags is Array
   attr_accessor :new_tags
 
   timestamps!
 
+  ensure_index :user_id
+
   def update_read_counter
-    self.increment(:read_counter => 1)
+    self.increment(read_counter: 1)
   end
 
   before_save do |model|
