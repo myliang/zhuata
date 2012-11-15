@@ -7,6 +7,6 @@ class Comment
 
   validates :commentable_id, presence: true
 
-  # ensure_index [[:commentable_id, 1], [:user_id, 1]]
+  ensure_index [[:commentable_id, 1], [:user_id, 1]]
 
 end
