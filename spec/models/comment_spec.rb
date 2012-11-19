@@ -9,8 +9,14 @@ describe Comment do
     comment.save.should be_false
   end
 
-  it "blog comment save should have not errors" do
+  it "blog comment should have not errors" do
     blog_comment.errors.should be_empty
+  end
+
+  it "comments_count should be +1" do
+    puts ":::::::::#{blog_comment.commentable.to_json}"
+    puts ":::::::::#{blog_comment.user.to_json}"
+    # blog_comment.commentable.comments_count.should == 1
   end
 
   it "commentable_type should be == Blog" do

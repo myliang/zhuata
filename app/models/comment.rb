@@ -2,8 +2,8 @@ class Comment
   include MongoMapper::Document
 
   key :text
-  belongs_to :commentable, polymorphic: true# , :counter_cache => true
-  belongs_to :user
+  belongs_to :commentable, polymorphic: true, counter_cache: true
+  belongs_to :user, counter_cache: true
 
   validates :commentable_id, presence: true
 
