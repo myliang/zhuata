@@ -33,8 +33,9 @@ module MongoMapper
           puts "::counter_cache::#{options[:counter_cache]}"
           # counter_count
           if counter_cache?
-            counter = "#{name.to_s.pluralize}_count"
-            puts ":::#{counter}::: field:::"
+            counter = "#{model.to_s.tableize}_count"
+            puts ":::#{counter}::: field::: #{type_key_name}"
+            puts ":::klass:::#{model.associations[name.inspect]}"
             klass.key counter, default: 0
             # add after save method increment
             model.after_save do 
