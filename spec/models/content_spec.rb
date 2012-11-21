@@ -41,8 +41,8 @@ describe Content do
       content.update_attributes(:title => "new title").should be_true
     end
 
-    it "read_counter should be default 0" do
-      content.read_counter.should == 0
+    it "read_count should be default 0" do
+      content.read_count.should == 0
     end
 
     it "errors should be empty" do
@@ -61,10 +61,10 @@ describe Content do
       content.tags.should have(3).items
     end
 
-    it "update_read_counter should be read_counter + 1" do
-      content.read_counter.should == 0
-      content.update_read_counter
-      Content.find(content.id).read_counter.should == 1
+    it "update_read_count should be read_count + 1" do
+      content.read_count.should == 0
+      content.update_read_count
+      Content.find(content.id).read_count.should == 1
     end
 
     after :each do

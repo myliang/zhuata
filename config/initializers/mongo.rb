@@ -31,15 +31,27 @@ module MongoMapper
           # counter_cache
           if counter_cache?
             # counter = "#{model.to_s.tableize}_count"
-            model.after_save do |m|
-              association = m.send(name)
-              association.class.key counter_name unless association.class.key?(counter_name)
+            params = {}
+            params[counter_name] = 1
 
-              m.send(name).increment("#{counter_name}": 1)
+            puts "::::::::::name=#{name}"
+            puts "::::::::::name=#{counter_name}"
+
+            model.after_create :after_save_counter_cache
+            model.after_destroy :after_destroy_counter_cache
+
+            model.module_eval <<-EVAL
+            def after_save_counter_cache
+              association = self.#{name}
+              return if association.nil?
+              # association.class.key(:#{counter_name}, Integer, default: 0)
+              association.increment(#{params})
             end
-            model.after_destroy do |m|
-              m.send(name).decrement("#{counter_name}": 1)
+            def after_destroy_counter_cache
+              return if self.#{name}.nil?
+              self.#{name}.decrement(#{params})
             end
+            EVAL
           end
         end
 

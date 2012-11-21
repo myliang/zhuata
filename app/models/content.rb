@@ -6,7 +6,8 @@ class Content
 
   many :comments, as: :commentable
   key :tags, Array
-  key :read_counter, Integer, default: 0
+  key :read_count, Integer, default: 0
+  # key :comments_count, Integer, default: 0
 
   # content
   key :title, String, required: true
@@ -19,8 +20,8 @@ class Content
 
   ensure_index :user_id
 
-  def update_read_counter
-    self.increment(read_counter: 1)
+  def update_read_count
+    self.increment(read_count: 1)
   end
 
   before_save do |model|

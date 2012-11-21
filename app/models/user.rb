@@ -13,6 +13,8 @@ class User
 
   attr_accessor :password, :password_confirmation, :current_password
 
+  # key :comments_count, Integer, default: 0
+
   ## Database authenticatable
   key :email,               String
   # key :password,            String
