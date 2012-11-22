@@ -2,12 +2,12 @@
 class Content
   include MongoMapper::Document
 
-  belongs_to :user
+  belongs_to :user# , counter_cache: true
 
   many :comments, as: :commentable
   key :tags, Array
   key :read_count, Integer, default: 0
-  # key :comments_count, Integer, default: 0
+  key :comments_count, Integer, default: 0
 
   # content
   key :title, String, required: true
