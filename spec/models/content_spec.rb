@@ -67,10 +67,6 @@ describe Content do
       Content.find(content.id).read_count.should == 1
     end
 
-    after :each do
-      Content.destroy_all
-      User.destroy_all
-    end
   end
 
 end

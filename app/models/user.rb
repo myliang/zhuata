@@ -13,8 +13,8 @@ class User
 
   attr_accessor :password, :password_confirmation, :current_password
 
-  [:comments, :blogs].each do |table_name|
-    key "#{table_name}_count", Integer, default: 0
+  [:comments, :blogs, :contents].each do |name|
+    key "#{name}_count", Integer, default: 0
   end
 
   ## Database authenticatable

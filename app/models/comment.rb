@@ -1,7 +1,10 @@
 class Comment
   include MongoMapper::Document
 
-  key :text
+  key :text, String, presence: true
+
+  many :replies
+
   belongs_to :commentable, polymorphic: true, counter_cache: true
   belongs_to :user, counter_cache: true
 

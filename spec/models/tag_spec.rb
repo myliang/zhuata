@@ -35,7 +35,4 @@ describe Tag do
 
 
   end
-  after :each do
-    Tag.destroy_all
-  end
 end

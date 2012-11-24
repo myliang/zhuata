@@ -2,7 +2,7 @@
 class Content
   include MongoMapper::Document
 
-  belongs_to :user# , counter_cache: true
+  belongs_to :user, counter_cache: true
 
   many :comments, as: :commentable
   key :tags, Array

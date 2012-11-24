@@ -31,6 +31,12 @@ Spork.each_run do
 
 end
 
+RSpec.configure do |config|
+  config.after :each do
+    [User, Content, Comment, Tag].each { |name| name.destroy_all }
+  end
+end
+
 # --- Instructions ---
 # Sort the contents of this file into a Spork.prefork and a Spork.each_run
 # block.

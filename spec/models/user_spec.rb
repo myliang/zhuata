@@ -13,7 +13,4 @@ describe User do
     end
   end
 
-  after :each do
-    user.destroy
-  end
 end

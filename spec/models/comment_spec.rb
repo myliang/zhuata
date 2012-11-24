@@ -10,6 +10,17 @@ describe Comment do
 
   describe "blog comment" do
     let(:blog_comment) { FactoryGirl.create(:blog_comment) }
+    let(:reply) { FactoryGirl.create(:reply) }
+
+    describe "replies" do
+      before :each do
+        blog_comment.replies << reply
+      end
+
+      it "should have 1 items" do
+        blog_comment.replies.should have(1).items
+      end
+    end
 
     it "blog comment should have not errors" do
       blog_comment.errors.should be_empty
@@ -27,12 +38,6 @@ describe Comment do
       blog_comment.commentable_type.should == "Blog"
     end
 
-  end
-
-  after :each do
-    Comment.destroy_all
-    Content.destroy_all
-    User.destroy_all
   end
 
 end

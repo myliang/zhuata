@@ -8,12 +8,7 @@ describe Blog do
   end
 
   it "user blogs_count should be 1" do
-    # blog.user.blogs_count.should == 1
-  end
-
-  after :each do
-    Blog.destroy_all
-    User.destroy_all
+    blog.user.blogs_count.should == 1
   end
 
 end

@@ -36,12 +36,16 @@ module MongoMapper
 
             model.class_eval <<-EVAL
             def after_create_#{name}_counter_cache
-              #{name}.increment(#{counter_name}: 1)
-              #{name}.#{counter_name} += 1
+              return if #{name}.nil?
+              counter_name = self.class.name.tableize + "_count"
+              #{name}.increment(counter_name: 1)
+              #{name}.send(counter_name + "=", #{name}.send(counter_name) + 1)
             end
             def after_destroy_#{name}_counter_cache
-              #{name}.decrement(#{counter_name}: 1)
-              #{name}.#{counter_name} -= 1
+              return if #{name}.nil?
+              counter_name = self.class.name.tableize + "_count"
+              #{name}.decrement(counter_name: 1)
+              #{name}.send(counter_name + "=", #{name}.send(counter_name) - 1)
             end
             EVAL
           end
