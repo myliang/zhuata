@@ -14,8 +14,6 @@ Zhuata::Application.routes.draw do
     put "users/update_avatar", :to => "registrations#update_avatar", :as => :update_avatar
   end
 
-  # prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
-
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
@@ -27,10 +25,11 @@ Zhuata::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :compares, :fictions, :pictures, :blogs, :comments
+  resources :compares, :fictions, :pictures, :blogs, :comments do
+  end
 
   # match paginate url
-  match 'blogs/tag/:tags' => 'blogs#tag', :as => :blog_tags
+  match 'blogs/tag/:tags' => 'blogs#tag', :as => :tag_blogs
   match ":id" => "users#show", :as => :user
 
   # Sample resource route with options:
@@ -74,5 +73,5 @@ Zhuata::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  match ':controller(/:action(/:id))(.:format)'
 end

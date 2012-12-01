@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe BlogsController do
 
+  before :each do
+    login_user
+  end
+
   let(:blog){ mock_model(Blog) }
 
   describe "protected methods" do
@@ -24,6 +28,35 @@ describe BlogsController do
       controller.instance_model_name.should eq blog
     end
 
+  end
+
+  describe "GET 'new'" do
+    before :each do
+      controller.should_receive(:build_model)
+      get "new"
+    end
+
+    it "returns http success" do
+      response.should be_success
+    end
+    it "should render new" do
+      response.should render_template("new")
+    end
+
+  end
+
+  describe "GET 'tag'" do
+    before :each do
+      controller.should_receive(:index)
+      get "tag"
+    end
+
+    it "returns http success" do
+      response.should be_success
+    end
+    it "should render index" do
+      response.should render_template("index")
+    end
   end
 
   describe "GET 'index'" do
@@ -49,6 +82,11 @@ describe BlogsController do
 
       it "build_params should have key :order " do
         controller.build_params.should have_key(:order)
+      end
+
+      it "build_params should not include controller and action" do
+        controller.build_params.should_not have_key(:controller)
+        controller.build_params.should_not have_key(:action)
       end
     end
 

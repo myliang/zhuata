@@ -16,11 +16,24 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
- 
+
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
-  # Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
- 
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+  RSpec.configure do |config|
+
+    # rspec devise
+    config.include Devise::TestHelpers, type: :controller
+    config.include ControllerMacros, type: :controller
+
+    config.after :each do
+      [User, Content, Comment, Tag].each { |name| name.destroy_all }
+    end
+
+  end
+
+
 end
 
 Spork.each_run do
@@ -29,12 +42,6 @@ Spork.each_run do
   Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
   Dir["#{Rails.root}/lib/**/*.rb"].each { |f| load f }
 
-end
-
-RSpec.configure do |config|
-  config.after :each do
-    [User, Content, Comment, Tag].each { |name| name.destroy_all }
-  end
 end
 
 # --- Instructions ---
