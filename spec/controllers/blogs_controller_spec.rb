@@ -7,6 +7,7 @@ describe BlogsController do
   end
 
   let(:blog){ mock_model(Blog) }
+  let(:comment){ mock_model(Comment) }
 
   describe "protected methods" do
     let(:controller) { BlogsController.new }
@@ -32,7 +33,7 @@ describe BlogsController do
 
   describe "GET 'new'" do
     before :each do
-      controller.should_receive(:build_model)
+      Blog.should_receive(:new).and_return(blog)
       get "new"
     end
 
@@ -42,6 +43,51 @@ describe BlogsController do
     it "should render new" do
       response.should render_template("new")
     end
+    it "assigns @blog should not be nil" do
+      assigns[:blog].should eq blog
+    end
+
+  end
+
+  describe "GET 'show'" do
+    before :each do
+      Blog.stub(:find).and_return(blog)
+      blog.should_receive(:update_read_count)
+      Comment.should_receive(:new).and_return(comment)
+      get 'show', id: 1
+    end
+
+    it "returns http success" do
+      response.should be_success
+    end
+    it "should render show" do
+      response.should render_template("show")
+    end
+    it "assigns @blog should be blog" do
+      assigns[:blog].should eq blog
+    end
+    it "assigns @comment should be comment" do
+      assigns[:comment].should eq comment
+    end
+
+  end
+
+  describe "GET 'edit'" do
+    before :each do
+      Blog.stub(:find).and_return(blog)
+      get "edit", id: 1
+    end
+
+    it "returns http success" do
+      response.should be_success
+    end
+    it "should render edit" do
+      response.should render_template("edit")
+    end
+    it "assigns @blog should not be nil" do
+      assigns[:blog].should eq blog
+    end
+
 
   end
 
@@ -76,7 +122,7 @@ describe BlogsController do
         response.should render_template("index")
       end
 
-      it "assigns blog should be empty" do
+      it "assigns @blogs should be empty" do
         assigns[:blogs].should be_empty
       end
 

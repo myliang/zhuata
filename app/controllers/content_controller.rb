@@ -1,7 +1,7 @@
 class ContentController < ApplicationController
 
-  before_filter :build_model, :except => [:index, :tag]
-  before_filter :authenticate_user!, :except => [:index, :tag]
+  before_filter :build_model, :authenticate_user!, except: [:index, :tag]
+  # before_filter :authenticate_user!, except: [:index, :tag]
 
   def index
     instance_model_names_set model_class.page(build_params)
@@ -15,7 +15,7 @@ class ContentController < ApplicationController
   def new; end
 
   def show 
-    instance_model_name.update_read_counter
+    instance_model_name.update_read_count
     @comment = Comment.new(:commentable => instance_model_name)
   end
 
