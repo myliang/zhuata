@@ -51,7 +51,7 @@ describe BlogsController do
 
   describe "GET 'show'" do
     before :each do
-      Blog.stub(:find).and_return(blog)
+      Blog.stub(:find).with("1").and_return(blog)
       blog.should_receive(:update_read_count)
       Comment.should_receive(:new).and_return(comment)
       get 'show', id: 1
@@ -74,7 +74,7 @@ describe BlogsController do
 
   describe "GET 'edit'" do
     before :each do
-      Blog.stub(:find).and_return(blog)
+      Blog.should_receive(:find).with("1").and_return(blog)
       get "edit", id: 1
     end
 
@@ -84,11 +84,29 @@ describe BlogsController do
     it "should render edit" do
       response.should render_template("edit")
     end
-    it "assigns @blog should not be nil" do
+    it "assigns @blog should be blog" do
       assigns[:blog].should eq blog
     end
+  end
 
+  describe "POST 'create'" do
+    before :each do
+      attrs = FactoryGirl.attributes_for(:blog)
+      Blog.should_receive(:new).with(attrs).and_return(blog)
+      blog.should_receive(:save).and_return(true)
 
+      post "create", blog: attrs
+    end
+
+    it "returns http success" do
+      response.should be_success
+    end
+    it "should redirect to show" do
+      response.should redirect_to "show"
+    end
+    it "assigns @blog should be blog" do
+      assigns[:blog].should eq blog
+    end
   end
 
   describe "GET 'tag'" do

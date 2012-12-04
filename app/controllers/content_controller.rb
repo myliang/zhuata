@@ -1,7 +1,7 @@
 class ContentController < ApplicationController
 
-  before_filter :build_model, :authenticate_user!, except: [:index, :tag]
-  # before_filter :authenticate_user!, except: [:index, :tag]
+  before_filter :build_model, only: [:new, :show, :edit, :update]
+  before_filter :authenticate_user!, except: [:index, :tag]
 
   def index
     instance_model_names_set model_class.page(build_params)
@@ -25,13 +25,13 @@ class ContentController < ApplicationController
     instance_model_name_set model_class.new(params[model_name])
     instance_model_name.user = current_user
     instance_model_name.save
-    respond_with instance_model_name, :location => blogs_url
+    respond_with instance_model_name
   end
 
   def update
     instance_model_name.old_tags = instance_model_name.tags
     instance_model_name.update_attributes(params[model_name])
-    respond_with instance_model_name, :location => blogs_url
+    respond_with instance_model_name
   end
 
   def build_model
