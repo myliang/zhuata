@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe BlogsController do
-
   before :each do
     login_user
   end
@@ -32,29 +31,38 @@ describe BlogsController do
   end
 
   describe "GET 'new'" do
-    before :each do
-      Blog.should_receive(:new).and_return(blog)
-      get "new"
+
+    it "should be false anonymous access" do
+      get 'new'
+      # response.should be_false
     end
 
-    it "returns http success" do
-      response.should be_success
-    end
-    it "should render new" do
-      response.should render_template("new")
-    end
-    it "assigns @blog should not be nil" do
-      assigns[:blog].should eq blog
+    describe "authenticated" do
+      before :each do
+        login_user
+        Blog.should_receive(:new).and_return(blog)
+        get "new"
+      end
+
+      it "returns http success" do
+        response.should be_success
+      end
+      it "should render new" do
+        response.should render_template("new")
+      end
+      it "assigns @blog should not be nil" do
+        assigns[:blog].should eq blog
+      end
     end
 
   end
 
   describe "GET 'show'" do
     before :each do
-      Blog.stub(:find).with("1").and_return(blog)
+      Blog.stub(:find).with(blog.id.to_s).and_return(blog)
       blog.should_receive(:update_read_count)
       Comment.should_receive(:new).and_return(comment)
-      get 'show', id: 1
+      get 'show', id: blog.id
     end
 
     it "returns http success" do
@@ -73,39 +81,57 @@ describe BlogsController do
   end
 
   describe "GET 'edit'" do
-    before :each do
-      Blog.should_receive(:find).with("1").and_return(blog)
-      get "edit", id: 1
+    it "should be false anonymous access" do
+      get 'edit'
+      # response.should be_false
     end
 
-    it "returns http success" do
-      response.should be_success
-    end
-    it "should render edit" do
-      response.should render_template("edit")
-    end
-    it "assigns @blog should be blog" do
-      assigns[:blog].should eq blog
+    describe "authenticated" do
+      before :each do
+        login_user
+        Blog.should_receive(:find).with(blog.id.to_s).and_return(blog)
+        get "edit", id: blog.id
+      end
+
+      it "returns http success" do
+        response.should be_success
+      end
+      it "should render edit" do
+        response.should render_template("edit")
+      end
+      it "assigns @blog should be blog" do
+        assigns[:blog].should eq blog
+      end
     end
   end
 
   describe "POST 'create'" do
-    before :each do
-      attrs = FactoryGirl.attributes_for(:blog)
-      Blog.should_receive(:new).with(attrs).and_return(blog)
-      blog.should_receive(:save).and_return(true)
 
-      post "create", blog: attrs
+    it "should be false anonymous access" do
+      post 'create'
+      # response.should be_false
     end
 
-    it "returns http success" do
-      response.should be_success
-    end
-    it "should redirect to show" do
-      response.should redirect_to "show"
-    end
-    it "assigns @blog should be blog" do
-      assigns[:blog].should eq blog
+    describe "authenticated" do
+      before :each do
+        user = login_user
+        attrs = FactoryGirl.attributes_for(:simple_blog)
+        Blog.should_receive(:new).and_return(blog)
+        blog.should_receive(:user=).with(user)
+        blog.should_receive(:save).and_return(true)
+
+        post "create", blog: attrs
+      end
+
+      it "returns http success" do
+        response.should_not be_success
+      end
+      it "should redirect to show" do
+        response.should redirect_to blog_path(blog)
+      end
+      it "assigns @blog should be blog" do
+        assigns[:blog].should eq blog
+      end
     end
   end
 

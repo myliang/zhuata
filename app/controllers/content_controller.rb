@@ -1,7 +1,7 @@
 class ContentController < ApplicationController
 
-  before_filter :build_model, only: [:new, :show, :edit, :update]
-  before_filter :authenticate_user!, except: [:index, :tag]
+  before_filter :build_model, only: [:new, :show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
     instance_model_names_set model_class.page(build_params)

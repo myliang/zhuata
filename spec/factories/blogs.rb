@@ -6,4 +6,10 @@ FactoryGirl.define do
     tags "ruby,rails,language"
     user
   end
+
+  factory :simple_blog, class: "Blog" do
+    text "ruby on rails"
+    title "ruby"
+    tags "ruby,rails"
+  end
 end

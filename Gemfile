@@ -36,7 +36,7 @@ gem 'twitter-bootstrap-rails'
 
 # rspec test
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.10.0'
   gem 'capybara'
   gem 'launchy'
   gem 'factory_girl_rails'
