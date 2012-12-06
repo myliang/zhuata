@@ -6,11 +6,18 @@ gem 'rails', '3.2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'hpricot'
 gem 'ruby_parser'
+
+# page template
 # gem 'haml'
 gem 'haml-rails'
+gem 'slim'
+
+# form
+gem 'simple_form'
 
 # upload file
 gem 'paperclip'
+# gem 'carrierwave'
 
 # task
 gem 'whenever', :require => false
@@ -44,6 +51,7 @@ group :development, :test do
   gem 'syntax'
   gem 'spork'
   gem 'autotest'
+  gem 'simplecov'
 end
 
 

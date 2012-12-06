@@ -1,7 +1,7 @@
 class ContentController < ApplicationController
 
   before_filter :build_model, only: [:new, :show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     instance_model_names_set model_class.page(build_params)
@@ -34,6 +34,7 @@ class ContentController < ApplicationController
     respond_with instance_model_name
   end
 
+  protected
   def build_model
     instance_model_name_set model_class.find(params[:id]) if params[:id]
     instance_model_name_set model_class.new unless instance_model_name

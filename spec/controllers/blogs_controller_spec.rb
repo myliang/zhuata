@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe BlogsController do
-  before :each do
-    login_user
-  end
 
   let(:blog){ mock_model(Blog) }
   let(:comment){ mock_model(Comment) }
@@ -12,20 +9,20 @@ describe BlogsController do
     let(:controller) { BlogsController.new }
 
     it "model_class should be Blog" do
-      controller.model_class.should == Blog
+      controller.send(:model_class).should == Blog
     end
 
     it "model_name should be blog" do
-      controller.model_name.should == "blog"
+      controller.send(:model_name).should == "blog"
     end
 
     it "instance_model_name should be nil" do
-      controller.instance_model_name.should be_nil
+      controller.send(:instance_model_name).should be_nil
     end
 
     it "instance_model_name should be " do
-      controller.instance_model_name_set(blog)
-      controller.instance_model_name.should eq blog
+      controller.send(:instance_model_name_set, blog)
+      controller.send(:instance_model_name).should eq blog
     end
 
   end
@@ -34,7 +31,7 @@ describe BlogsController do
 
     it "should be false anonymous access" do
       get 'new'
-      # response.should be_false
+      response.code.should eq "302"
     end
 
     describe "authenticated" do
@@ -83,7 +80,7 @@ describe BlogsController do
   describe "GET 'edit'" do
     it "should be false anonymous access" do
       get 'edit'
-      # response.should be_false
+      response.code.should eq "302"
     end
 
     describe "authenticated" do
@@ -109,7 +106,7 @@ describe BlogsController do
 
     it "should be false anonymous access" do
       post 'create'
-      # response.should be_false
+      response.code.should eq "302"
     end
 
     describe "authenticated" do
@@ -171,12 +168,12 @@ describe BlogsController do
       end
 
       it "build_params should have key :order " do
-        controller.build_params.should have_key(:order)
+        controller.send(:build_params).should have_key(:order)
       end
 
       it "build_params should not include controller and action" do
-        controller.build_params.should_not have_key(:controller)
-        controller.build_params.should_not have_key(:action)
+        controller.send(:build_params).should_not have_key(:controller)
+        controller.send(:build_params).should_not have_key(:action)
       end
     end
 
@@ -186,7 +183,7 @@ describe BlogsController do
       end
 
       it "build_params should have key :tags" do
-        controller.build_params.should have_key(:tags)
+        controller.send(:build_params).should have_key(:tags)
       end
     end
 
