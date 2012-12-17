@@ -1,5 +1,0 @@
-.box.left
-  = form_for(@blog, :url => blogs_path, :html => {:class => "form-horizontal"}) do |f|
-    = alert(@blog)
-    %legend= t_form_title(@blog, "create")
-    =render :partial => "edit", :locals => {:f => f, :submit_name => "save"}
