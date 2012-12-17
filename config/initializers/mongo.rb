@@ -12,10 +12,19 @@ module MongoMapper
   module Plugins
     module Pagination
       module ClassMethods
-        def page(opt)
-          opt[:per_page] = 10 unless opt[:per_page]
-          opt[:page] = 1 unless opt[:page]
-          paginate(opt)
+        def build_page_params(params)
+          opt = {}
+          params && params.kind_of?(Hash) && params.each do |k, v|
+            opt[k.to_sym] = v unless ["controller", "action", :controller, :action].include?(k)
+          end
+          opt[:order] ||= :created_at.desc
+          opt[:per_page] ||= 10
+          opt[:page] ||= 1
+          opt
+        end
+
+        def page(params)
+          paginate(build_page_params(params))
         end
       end
     end
@@ -38,14 +47,14 @@ module MongoMapper
             def after_create_#{name}_counter_cache
               return if #{name}.nil?
               counter_name = self.class.name.tableize + "_count"
-              #{name}.increment(counter_name: 1)
-              #{name}.send(counter_name + "=", #{name}.send(counter_name) + 1)
+            #{name}.increment(counter_name: 1)
+            #{name}.send(counter_name + "=", #{name}.send(counter_name) + 1)
             end
             def after_destroy_#{name}_counter_cache
               return if #{name}.nil?
               counter_name = self.class.name.tableize + "_count"
-              #{name}.decrement(counter_name: 1)
-              #{name}.send(counter_name + "=", #{name}.send(counter_name) - 1)
+            #{name}.decrement(counter_name: 1)
+            #{name}.send(counter_name + "=", #{name}.send(counter_name) - 1)
             end
             EVAL
           end

@@ -1,0 +1,24 @@
+= devise_error_messages!
+.module.border
+  .header
+    h5= t("attributes.user.settings.edit_pwd")
+  .body
+    = form_for(resource, as: resource_name, url: update_pwd_path,
+      html: { method: :put, class: "form" }) do |f|
+      .fr
+        = f.label :password, class: "label"
+        .fd
+          = f.password_field :password, autocomplete: "off"
+      .fr
+        = f.label :password_confirmation, class: "label"
+        .fd
+          = f.password_field :password_confirmation
+      .fr
+        = f.label :current_password, class: "label"
+        .fd
+          = f.password_field :current_password
+      .form-actions
+        = f.submit t("devise.base.update"), class: "btn blue"
+
+- content_for :sidebar do
+  = edit_user_tabs

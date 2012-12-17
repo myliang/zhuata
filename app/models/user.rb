@@ -5,6 +5,9 @@ class User
   many :blogs
   many :comments
 
+  many :send_messages, class_name: 'Message'
+  many :receive_messages, class_name: 'Message'
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -16,6 +19,10 @@ class User
   [:comments, :blogs, :contents].each do |name|
     key "#{name}_count", Integer, default: 0
   end
+
+  # count
+  key :unread_messages_count, Integer, default: 0
+  # key :unread_comments_count, Integer, default: 0
 
   ## Database authenticatable
   key :email,               String

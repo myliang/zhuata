@@ -27,6 +27,12 @@ Zhuata::Application.routes.draw do
 
   resources :compares, :fictions, :pictures, :blogs, :comments do
   end
+  resources :messages do
+    collection do
+      get 'to'
+      get 'from'
+    end
+  end
 
   # match paginate url
   match 'blogs/tag/:tags' => 'blogs#tag', :as => :tag_blogs

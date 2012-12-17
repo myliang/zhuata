@@ -10,8 +10,8 @@ class Content
   key :comments_count, Integer, default: 0
 
   # content
-  key :title, String, required: true
-  key :text, String, required: true
+  key :title, String, required: true, length: {maximum: 30}
+  key :text, String, required: true, length: {maximum: 5000}
 
   # update attibute add_tags and remove_tags is Array
   attr_accessor :new_tags

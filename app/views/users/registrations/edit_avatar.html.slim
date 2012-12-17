@@ -1,0 +1,15 @@
+= devise_error_messages!
+.module.border
+  .header
+    h5= t("attributes.user.settings.edit_avatar")
+  .body
+    = form_for(resource, as: resource_name, url: update_avatar_path,
+      html: { method: :put, class: "form" }) do |f|
+      ul.thumbnails
+        li
+          = link_to image_tag(resource.avatar.url(:medium)), "#", class: "thumbnail"
+      = f.file_field :avatar, class: "btn"
+      = f.submit t("devise.base.upload"), class: "btn blue"
+
+- content_for :sidebar do
+  = edit_user_tabs

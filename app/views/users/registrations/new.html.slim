@@ -1,0 +1,27 @@
+| ZHUATA
+- content_for :sidebar do
+  = devise_error_messages!
+  .module.border
+    .header
+      h5= t("devise.base.sign_up")
+    = form_for(resource, as: resource_name, url: registration_path(resource_name),
+        html: {class: "form small"}) do |f|
+      .fr
+        = f.label :name, class: "label"
+        .fd
+          = f.text_field :name
+      .fr
+        = f.label :email, class: "label"
+        .fd
+          = f.email_field :email
+      .fr
+        = f.label :password, class: "label"
+        .fd
+          = f.password_field :password
+      .fr
+        = f.label :password_confirmation, class: "label"
+        .fd
+          = f.password_field :password_confirmation
+      .form-actions
+        = f.submit t("devise.base.sign_up"), :class => "btn green"
+        = render "users/shared/links"

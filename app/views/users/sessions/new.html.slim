@@ -1,0 +1,25 @@
+| LOGO-ZHUAT
+- content_for :sidebar do
+  = devise_error_messages!
+  .module.border
+    .header
+      h5= t("devise.base.sign_in")
+    = form_for(resource, as: resource_name, url: session_path(resource_name),
+        html: {class: "form small"}) do |f|
+      .fr
+        = f.label :email, class: "label"
+        .fd
+          = f.email_field :email
+      .fr
+        = f.label :password, class: "label"
+        .fd
+          = f.password_field :password
+      - if devise_mapping.rememberable?
+        .fr
+          .fd
+            .checkbox
+              = f.check_box :remember_me
+              = f.label :remember_me
+      .form-actions
+        = f.submit t("devise.base.sign_in"), :class => "btn green"
+        = render "users/shared/links"

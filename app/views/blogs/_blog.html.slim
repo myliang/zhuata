@@ -1,0 +1,18 @@
+- user = blog.user || User.new
+.item
+  .item-left
+    =link_to image_tag(user.avatar.url(:middle)), user_path(user.id)
+  .item-right
+    .item-title
+      =link_to user.name, "#", :class => "green"
+      | •
+      =link_to blog.title, blog_path(blog)
+    .item-content
+      = raw blog.short_text
+    .item-bottom
+      ul.tag
+        - for tag in blog.tags
+          li=link_to tag, blog_tags_path(tag)
+      .clearfix
+      span= time_ago_in_words blog.created_at
+

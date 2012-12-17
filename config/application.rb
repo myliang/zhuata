@@ -65,7 +65,7 @@ module Zhuata
     # generators
     config.generators do |g|
       g.orm :mongo_mapper
-      g.template_engine :haml
+      g.template_engine :slim
       # g.test_framework :rspec
       # g.integration_tool :rspec
     end

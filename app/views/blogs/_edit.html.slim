@@ -1,0 +1,15 @@
+.control-group
+  = f.label :title, :class => "control-label"
+  .controls
+    = f.text_field :title, :class => "span4"
+.control-group
+  = f.label :tags, :class => "control-label"
+  .controls
+    = f.text_field :tags, :value => @blog.tags_str, :class => "span5",
+      placeholder => Blog.human_attribute_name(:tags_tip):
+.control-group
+  = f.label :text, :class => "control-label"
+  .controls
+    = f.text_area :text, :class => "input-xxlarge", :id => "wysiwyg"
+.form-actions
+  = f.submit t("helpers.submit.#{submit_name}"), :class => "btn btn-primary"

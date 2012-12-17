@@ -30,6 +30,27 @@ describe Content do
     end
   end
 
+  describe "validates" do
+    let(:content){  FactoryGirl.build(:content) }
+    it "#title max length <= 30" do
+      content.title = 31.times.collect { "a" }
+      content.save.should be_false
+      content.should have(1 * CALL_TIMES).error_on(:title)
+    end
+
+    it "#title must be required" do
+      content.title = nil
+      content.save.should be_false
+      content.should have(1 * CALL_TIMES).error_on(:title)
+    end
+
+    it "#text max length <= 5000" do
+      content.text = 5001.times.collect { "a" }
+      content.save.should be_false
+      content.should have(1 * CALL_TIMES).error_on(:text)
+    end
+  end
+
   describe "instance methods"do 
     let(:content) { 
       Tag.should_receive(:update_counter).exactly(1 * CALL_TIMES).times

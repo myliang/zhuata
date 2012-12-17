@@ -105,30 +105,95 @@ describe BlogsController do
   describe "POST 'create'" do
 
     it "should be false anonymous access" do
-      post 'create'
+      post :create
+      response.code.should eq "302"
+    end
+
+    describe "authenticated" do
+      context "when the blog fails to save" do
+        it "should render_template new" do
+          login_user
+          post :create
+          response.should render_template "new"
+        end
+
+      end
+      context "when the blog saves successfully" do
+
+        before :each do
+          user = login_user
+          attrs = FactoryGirl.attributes_for(:simple_blog)
+          Blog.should_receive(:new).and_return(blog)
+          blog.should_receive(:user=).with(user)
+          blog.should_receive(:save).and_return(true)
+
+          post :create, blog: attrs
+        end
+
+        it "should redirect to show" do
+          response.should redirect_to blog_path(blog)
+        end
+        it "assigns @blog should be blog" do
+          assigns[:blog].should eq blog
+        end
+      end
+    end
+  end
+
+  describe "put 'update'" do
+    it "should be false anonymous access" do
+      put :update
+      response.code.should eq "302"
+    end
+
+    describe "authenticated" do
+      context "when the blog fails to update" do
+        it "should render_template edit" do
+          login_user
+          put :update
+          response.should render_template "edit"
+        end
+
+      end
+      context "when the blog updates successfully" do
+
+        before :each do
+          user = login_user
+          attrs = {}
+          attrs["title"] = "title update"
+          Blog.should_receive(:find).with(blog.id.to_s).and_return(blog)
+          blog.should_not_receive(:user=)
+          blog.should_receive(:update_attributes).with(attrs).and_return(true)
+
+          put :update, id: blog.id, blog: attrs
+        end
+
+        it "should redirect to show" do
+          response.should redirect_to blog_path(blog)
+        end
+        it "assigns @blog should be blog" do
+          assigns[:blog].should eq blog
+        end
+      end
+    end
+  end
+
+  describe "DELETE :destroy" do
+    it "should be false anonymous access" do
+      put :update
       response.code.should eq "302"
     end
 
     describe "authenticated" do
       before :each do
-        user = login_user
-        attrs = FactoryGirl.attributes_for(:simple_blog)
-        Blog.should_receive(:new).and_return(blog)
-        blog.should_receive(:user=).with(user)
-        blog.should_receive(:save).and_return(true)
-
-        post "create", blog: attrs
+        login_user
+        Blog.should_receive(:find).with(blog.id.to_s).and_return(blog)
+        delete :destroy, id: blog.id
       end
-
-      it "returns http success" do
-        response.should_not be_success
-      end
-      it "should redirect to show" do
-        response.should redirect_to blog_path(blog)
-      end
-      it "assigns @blog should be blog" do
+      it "assigns @blog is nil" do
         assigns[:blog].should eq blog
       end
+      specify { response.should redirect_to blogs_url }
     end
   end
 
@@ -167,24 +232,6 @@ describe BlogsController do
         assigns[:blogs].should be_empty
       end
 
-      it "build_params should have key :order " do
-        controller.send(:build_params).should have_key(:order)
-      end
-
-      it "build_params should not include controller and action" do
-        controller.send(:build_params).should_not have_key(:controller)
-        controller.send(:build_params).should_not have_key(:action)
-      end
-    end
-
-    context "params with tags: ruby" do
-      before :each do
-        get 'index', {tags: "ruby"}
-      end
-
-      it "build_params should have key :tags" do
-        controller.send(:build_params).should have_key(:tags)
-      end
     end
 
   end

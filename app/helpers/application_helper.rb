@@ -28,7 +28,7 @@ module ApplicationHelper
 
   def edit_user_tabs
     action_name = params[:action]
-    content_tag :ul, :class => "nav nav-tabs" do
+    content_tag :ul, :class => "nav stacked" do
       ["edit", "edit_pwd", "edit_avatar"].map do |ele|
         active = action_name == ele ? "active" : ""
         content_tag :li,

@@ -1,0 +1,15 @@
+
+- content_for :sidebar do
+  = devise_error_messages!
+  .module.border
+    .header
+      h5= t("devise.base.forget_password")
+    = form_for(resource, as: resource_name, url: password_path(resource_name),
+      html: { method: :post, class: "form small" }) do |f|
+      .fr
+        = f.label :email, :class => "label"
+        .fd
+          = f.email_field :email
+      .form-actions
+        = f.submit t("devise.base.reset_password"), class: "btn green"
+        = render "users/shared/links"

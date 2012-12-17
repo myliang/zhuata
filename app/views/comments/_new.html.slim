@@ -1,0 +1,7 @@
+div style="position: relative; padding-left: 20px;"
+  = form_for(@comment, :url => comments_path, :html => {:class => "form-horizontal"}) do |f|
+    =f.hidden_field :commentable_id
+    =f.hidden_field :commentable_type
+    =f.text_area :text, :style => "width: 500px; height: 80px;"
+    div style="position: absolute; left: 560px; top: 0;"
+      = f.submit t_submit("comment"), :class => "btn btn-primary"
