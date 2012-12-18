@@ -1,18 +1,22 @@
 - user = blog.user || User.new
 .item
-  .item-left
+  .content
     =link_to image_tag(user.avatar.url(:middle)), user_path(user.id)
-  .item-right
-    .item-title
-      =link_to user.name, "#", :class => "green"
-      | •
+    .header
+      =link_to user.name, user_path(user.id)
+      |&nbsp;&bull; 
       =link_to blog.title, blog_path(blog)
-    .item-content
-      = raw blog.short_text
-    .item-bottom
-      ul.tag
-        - for tag in blog.tags
-          li=link_to tag, blog_tags_path(tag)
-      .clearfix
+    p.body
+      = raw cut_remove_html(blog.text, 200)
+    ul.nav.pills.small
+      - for tag in blog.tags
+        li=link_to tag, tag_blogs_path(tag)
+    .footer
       span= time_ago_in_words blog.created_at
+      span
+        = t_submit("read")
+        = " #{blog.read_count}"
+      span
+        = t_submit("comment")
+        = " #{blog.comments_count}"
 

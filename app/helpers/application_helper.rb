@@ -1,9 +1,12 @@
 require 'helpers/message_helper'
 require 'helpers/page_helper'
+require 'helpers/string_helper'
+
 module ApplicationHelper
 
   include MessageHelper
   include PageHelper
+  include StringHelper
 
   def t_form_title(model, action)
     I18n.t("helpers.submit.#{action}", :model => t("models.#{model.class.to_s.downcase}"))

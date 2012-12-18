@@ -15,7 +15,7 @@ module MongoMapper
         def build_page_params(params)
           opt = {}
           params && params.kind_of?(Hash) && params.each do |k, v|
-            opt[k.to_sym] = v unless ["controller", "action", :controller, :action].include?(k)
+            opt[k.to_sym] = v unless ["controller", "action", "format", :controller, :action, :format].include?(k)
           end
           opt[:order] ||= :created_at.desc
           opt[:per_page] ||= 10

@@ -25,8 +25,11 @@ Zhuata::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :compares, :fictions, :pictures, :blogs, :comments do
+  resources :compares, :fictions, :pictures, :blogs do
+    resources :comments, only: [:index]
   end
+
+  resources :comments
   resources :messages do
     collection do
       get 'to'

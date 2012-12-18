@@ -1,22 +1,26 @@
 - user = @blog.user || User.new
-.box.left
-  .item-detail
-    .item-head
-      .left
-        =link_to image_tag(user.avatar.url(:thumb)), user_path(user.id)
-      .right
+.items.border
+  .item
+    .content.big
+      =link_to image_tag(user.avatar.url(:thumb)), user_path(user.id)
+      .header
+        =link_to user.name, user_path(user.id)
+        |&nbsp;&bull; 
         =link_to @blog.title, blog_path(@blog)
-        ul.tag
-          - for tag in @blog.tags
-            li=link_to tag, blog_tags_path(tag)
-        .bottom
-          =link_to user.name, user_path(user.id)
-          | •
-          span= time_ago_in_words @blog.created_at
-          | •
-          span
-            =t_submit("read")
-            = "（#{@blog.read_counter}）"
-    .item-body
-      = raw @blog.text
+      ul.nav.pills.small
+        - for tag in @blog.tags
+          li=link_to tag, tag_blogs_path(tag)
+      .footer
+        span= time_ago_in_words @blog.created_at
+        =link_to "#js-content-comments" do
+          = t_submit("comment")
+          = " #{@blog.comments_count}"
+        span
+          = t_submit("read")
+          = " #{@blog.read_count}"
+  .item
+    p= raw @blog.text
+  .item.active
     =render :partial => "comments/new"
+  #js-paginate-result.items
+  .item.footer= ajax_page(blog_comments_path(@blog.id))

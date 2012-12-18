@@ -1,7 +1,11 @@
-div style="position: relative; padding-left: 20px;"
-  = form_for(@comment, :url => comments_path, :html => {:class => "form-horizontal"}) do |f|
-    =f.hidden_field :commentable_id
-    =f.hidden_field :commentable_type
-    =f.text_area :text, :style => "width: 500px; height: 80px;"
-    div style="position: absolute; left: 560px; top: 0;"
-      = f.submit t_submit("comment"), :class => "btn btn-primary"
+- if user_signed_in?
+  = form_for(@comment, url: comments_path, html: {class: "form"}) do |f|
+    = f.hidden_field :commentable_id
+    = f.hidden_field :commentable_type
+    .fr
+      = f.text_area :text
+    = f.submit "#{t("helpers.submit.title", :model => t("helpers.submit.comment"))} Ctrl+Enter", 
+      :class => "btn blue js-form"
+- else
+  p
+    |需先登录，方可评论

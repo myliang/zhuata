@@ -162,6 +162,7 @@ zh-CN:
     select:
       prompt: 请选择
     submit:
+      title: 提交%{model}
       create: 新建%{model}
       save: 保存
       update: 更新
