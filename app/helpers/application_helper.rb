@@ -18,6 +18,15 @@ module ApplicationHelper
     I18n.t("helpers.submit.#{action}")
   end
 
+  def new_menus
+    content_tag :ul, class: "menu lt" do
+      MENUS.map do |ele|
+        content_tag :li,
+          link_to(t(ele, scope: :menus), "/#{ele.pluralize}/new")
+      end.join.html_safe
+    end
+  end
+
   def user_menus(user)
     MENUS.each do |ele|
       active = (controller_name == ele.pluralize and params[:user_id]) ? "active" : ""
@@ -26,24 +35,24 @@ module ApplicationHelper
   end
 
   def menus
-    content_tag :ul, :class => "nav" do
+    content_tag :ul, class: "nav" do
       MENUS.map do |ele|
         active = (controller_name == ele.pluralize and !params[:user_id]) ? "active" : ""
         content_tag :li, 
           link_to(t(ele, scope: :menus), "/#{ele.pluralize}"),
-          :class => active
+          class: active
       end.join.html_safe
     end
   end
 
   def edit_user_tabs
     action_name = params[:action]
-    content_tag :ul, :class => "nav stacked" do
+    content_tag :ul, class: "nav stacked" do
       ["edit", "edit_pwd", "edit_avatar"].map do |ele|
         active = action_name == ele ? "active" : ""
         content_tag :li,
           link_to(t(ele, scope: [:attributes, :user, :settings]), "/users/#{ele}"),
-          :class => active
+          class: active
       end.join.html_safe
     end
   end

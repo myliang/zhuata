@@ -8,7 +8,9 @@ class ContentController < BaseController
   end
 
   def show 
-    instance_model_name.update_read_count
+    unless instance_model_name.user == current_user
+      instance_model_name.update_read_count
+    end
     @comment = Comment.new(:commentable => instance_model_name)
   end
 

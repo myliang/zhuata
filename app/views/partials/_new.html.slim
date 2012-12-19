@@ -1,0 +1,7 @@
+.module.border
+  .inner
+    .btn-group.menu-outer
+      =link_to t("helpers.submit.new", model: t("menus.blog")), new_blog_path, class: "btn green"
+      a.btn.green.js-menu.last href="#"
+        span class="caret down"
+      = new_menus

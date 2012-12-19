@@ -1,15 +1,21 @@
-.control-group
-  = f.label :title, :class => "control-label"
-  .controls
-    = f.text_field :title, :class => "span4"
-.control-group
-  = f.label :tags, :class => "control-label"
-  .controls
-    = f.text_field :tags, :value => @blog.tags_str, :class => "span5",
-      placeholder => Blog.human_attribute_name(:tags_tip):
-.control-group
-  = f.label :text, :class => "control-label"
-  .controls
-    = f.text_area :text, :class => "input-xxlarge", :id => "wysiwyg"
-.form-actions
-  = f.submit t("helpers.submit.#{submit_name}"), :class => "btn btn-primary"
+= alert(@blog)
+.module.border
+  .header
+    h5= t_form_title(@blog, title_name)
+  .body
+    = form_for(@blog, url: url, html: {class: "form"}) do |f|
+      .fr
+        = f.label :title, class: "label"
+        .fd
+          = f.text_field :title, style: "width: 80%;"
+      .fr
+        = f.label :tags, class: "label"
+        .fd
+          = f.text_field :new_tags, 
+            value: @blog.new_tags || @blog.tags.join(',')
+      .fr
+        = f.label :text, class: "label"
+        .fd
+          = f.text_area :text, id: "wysiwyg"
+      .form-actions
+        = f.submit t_submit(submit_name), class: "btn blue"
