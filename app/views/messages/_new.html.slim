@@ -1,0 +1,12 @@
+- if user_signed_in?
+  .js-form-simple
+    = text_field_tag "", "@#{@user.name}", style: "width: 99%;"
+  div style="display: none"
+    = form_for(@message, url: messages_path, html: {class: "form"}) do |f|
+      = f.hidden_field :to_user_id
+      = f.text_area :text, class: "js-textarea", style: "width: 99%;"
+      = f.submit "#{t("helpers.submit.message")} Ctrl+Enter", 
+        class: "btn blue disabled js-form-nothing"
+- else
+  p
+    |需先登录，方可留言

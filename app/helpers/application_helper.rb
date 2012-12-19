@@ -8,6 +8,8 @@ module ApplicationHelper
   include PageHelper
   include StringHelper
 
+  MENUS = ["compare", "fiction", "picture", "blog"]
+
   def t_form_title(model, action)
     I18n.t("helpers.submit.#{action}", :model => t("models.#{model.class.to_s.downcase}"))
   end
@@ -16,17 +18,22 @@ module ApplicationHelper
     I18n.t("helpers.submit.#{action}")
   end
 
+  def user_menus(user)
+    MENUS.each do |ele|
+      active = (controller_name == ele.pluralize and params[:user_id]) ? "active" : ""
+      yield(ele, t(ele, scope: :menus), "/#{user.id}/#{ele.pluralize}", active)
+    end
+  end
+
   def menus
-    controller_name = params["controller"]
     content_tag :ul, :class => "nav" do
-      ["compare", "fiction", "picture", "blog"].map do |ele|
-        active = controller_name == ele.pluralize ? "active" : ""
+      MENUS.map do |ele|
+        active = (controller_name == ele.pluralize and !params[:user_id]) ? "active" : ""
         content_tag :li, 
           link_to(t(ele, scope: :menus), "/#{ele.pluralize}"),
           :class => active
       end.join.html_safe
     end
-
   end
 
   def edit_user_tabs

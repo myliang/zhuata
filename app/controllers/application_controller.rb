@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  respond_to :html
+  respond_to :html, :json
 
   def render_ajax_page(models)
     self.formats = [:html]

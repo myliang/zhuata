@@ -1,11 +1,13 @@
 - if user_signed_in?
-  = form_for(@comment, url: comments_path, html: {class: "form"}) do |f|
-    = f.hidden_field :commentable_id
-    = f.hidden_field :commentable_type
-    .fr
-      = f.text_area :text
-    = f.submit "#{t("helpers.submit.title", :model => t("helpers.submit.comment"))} Ctrl+Enter", 
-      :class => "btn blue js-form"
+  .js-form-simple style="margin-left: 60px;"
+    = text_field_tag "", t_submit("comment"), style: "width: 99%;"
+  div style="display: none;"
+    = form_for(@comment, url: comments_path, html: {class: "form"}) do |f|
+      = f.hidden_field :commentable_id
+      = f.hidden_field :commentable_type
+      = f.text_area :text, class: "js-textarea"
+      = f.submit "#{t("helpers.submit.title", model: t("helpers.submit.comment"))} Ctrl+Enter", 
+        class: "btn blue disabled js-form-page"
 - else
   p
     |需先登录，方可评论

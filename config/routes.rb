@@ -39,7 +39,13 @@ Zhuata::Application.routes.draw do
 
   # match paginate url
   match 'blogs/tag/:tags' => 'blogs#tag', :as => :tag_blogs
-  match ":id" => "users#show", :as => :user
+  match ":user_id" => "blogs#index"
+  match ":user_id/blogs" => "blogs#index", :as => :user_blogs
+  match ":user_id/compares" => "compares#index", :as => :user_compares
+  match ":user_id/fictions" => "fictions#index", :as => :user_fictions
+  match ":user_id/pictures" => "pictures#index", :as => :user_pictures
+  match ":user_id/messages/from" => "messages#from"
+  match ":user_id/messages/to" => "messages#to"
 
   # Sample resource route with options:
   #   resources :products do

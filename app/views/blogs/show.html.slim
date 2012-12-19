@@ -12,7 +12,8 @@
           li=link_to tag, tag_blogs_path(tag)
       .footer
         span= time_ago_in_words @blog.created_at
-        =link_to "#js-content-comments" do
+        /! =link_to "#js-content-comments" do
+        span
           = t_submit("comment")
           = " #{@blog.comments_count}"
         span

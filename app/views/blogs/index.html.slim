@@ -3,3 +3,6 @@
     h4= t("menu.blog")
   = render @blogs
   .item.footer= page @blogs
+
+- content_for :sidebar do
+  = render partial: "users/sidebar"

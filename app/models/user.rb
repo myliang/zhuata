@@ -16,7 +16,7 @@ class User
 
   attr_accessor :password, :password_confirmation, :current_password
 
-  [:comments, :blogs, :contents].each do |name|
+  [:comments, :blogs, :contents, :compares, :fictions, :pictures].each do |name|
     key "#{name}_count", Integer, default: 0
   end
 
@@ -34,7 +34,7 @@ class User
   key :real_name, String, length: {maximum: 20}
   key :location, String, length: {maximum: 20}
   key :website, String, length: {maximum: 50}
-  key :bio, String, length: {maximum: 20}
+  key :bio, String, length: {maximum: 200}
 
   validate :website,
     format: {with: /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@\[\]\':+!]*([^\"\"])*$/, allow_blank: true}

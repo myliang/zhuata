@@ -1,0 +1,22 @@
+/! - content_for :sidebar do
+  .module.border
+    .content
+      =link_to image_tag(@user.avatar.url(:middle)), user_path(@user.id)
+      .header
+        span=@user.name
+        |&nbsp;&bull; 
+        span=@user.real_name
+      .body
+        = @user.bio
+        = @user.website
+      .footer= @user.location
+    ul.nav.stretched
+      - user_menus do |ele, name, url, active|
+        li= link_to url do
+          strong=@user.send "#{ele.pluralize}_count"
+          = name
+    .footer
+      = text_field_tag "", "@myliang"
+  ul.nav.stacked
+    - user_menus do |ele, name, url, active|
+      li= link_to name, url
