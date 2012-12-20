@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe CommentsController do
 
+  DEFAULT_JSON = "{\"errors\":{},\"content\":\"\"}"
+
   let(:comment) { mock_model(Comment) }
 
   describe "post :create" do
@@ -15,7 +17,7 @@ describe CommentsController do
         user = login_user
         Comment.should_receive(:new).and_return(comment)
         comment.should_receive(:user=).with(user)
-        comment.should_receive(:to_json).and_return("{}")
+        # comment.should_receive(:to_json).and_return("{}")
       end
 
       context "when the comment saves successfully" do
@@ -23,8 +25,8 @@ describe CommentsController do
           comment.should_receive(:save).and_return(true) 
           post :create
         end
-        it "should be {}" do
-          response.body.should eq "{}"
+        it "should be DEFAULT_JSON" do
+          response.body.should eq DEFAULT_JSON
         end
       end
 
@@ -33,14 +35,14 @@ describe CommentsController do
           comment.should_receive(:save).and_return(false) 
         end
 
-        it "format is html should be {}" do
+        it "format is html should be DEFAULT_JSON" do
           post :create
-          response.body.should eq "{}"
+          response.body.should eq DEFAULT_JSON
         end
 
-        it "format is json should be {}" do
+        it "format is json should be DEFAULT_JSON" do
           post :create, format: :json
-          response.body.should eq "{}"
+          response.body.should eq DEFAULT_JSON
         end
       end
     end
@@ -48,7 +50,9 @@ describe CommentsController do
 
   describe "get index" do
     before :each do
-      Comment.should_receive(:page).and_return([])
+      Comment.should_receive(:page).and_return()
+      controller.stub(:formats=).with([:html])
+      controller.stub(:render_ajax_page)
     end
 
     it "returns http success" do

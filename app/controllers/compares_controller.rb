@@ -1,4 +1,2 @@
-class ComparesController < ApplicationController
-  def index
-  end
+class ComparesController < ContentController
 end

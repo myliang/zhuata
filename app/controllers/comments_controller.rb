@@ -1,6 +1,4 @@
-class CommentsController < ApplicationController
-
-  before_filter :authenticate_user!, only: [:create]
+class CommentsController < BaseController
 
   def create
     @comment = Comment.new(params[:comment])

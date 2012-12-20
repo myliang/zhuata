@@ -317,6 +317,7 @@ zh-CN:
       unlocked: 您的帐号已成功解锁，您现在已登录.
   errors:
     messages:
+      access_denied: 不要越权哦，这样是不允许的哦，^_^"
       already_confirmed: 已经确认，请重新登录.
       expired: 您已过期，请重新申请
       not_found: 没有找到

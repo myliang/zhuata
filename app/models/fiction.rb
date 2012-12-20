@@ -1,0 +1,3 @@
+class Fiction < Content
+
+end

@@ -1,0 +1,3 @@
+class FictionTag < Tag
+
+end

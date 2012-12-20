@@ -37,6 +37,7 @@ html lang="en"
     .wrapper
       .container.fixed-width
         .main
+          = alert
           = yield 
           .sidebar
             - if content_for?(:sidebar) 

@@ -1,5 +1,8 @@
 module PageHelper
   def page(entries)
+
+    return "" if entries.total_pages <= 1
+
     prev = entries.previous_page
     nxt = entries.next_page
     base_url = "#{request.url}"

@@ -16,13 +16,13 @@ describe BlogsController do
       controller.send(:model_name).should == "blog"
     end
 
-    it "instance_model_name should be nil" do
-      controller.send(:instance_model_name).should be_nil
+    it "instance_model should be nil" do
+      controller.send(:instance_model).should be_nil
     end
 
-    it "instance_model_name should be " do
-      controller.send(:instance_model_name_set, blog)
-      controller.send(:instance_model_name).should eq blog
+    it "instance_model should be " do
+      controller.send(:instance_model_set, blog)
+      controller.send(:instance_model).should eq blog
     end
 
   end
@@ -57,6 +57,7 @@ describe BlogsController do
   describe "GET 'show'" do
     before :each do
       Blog.stub(:find).with(blog.id.to_s).and_return(blog)
+      blog.stub_chain(:user, :==).and_return(false)
       blog.should_receive(:update_read_count)
       Comment.should_receive(:new).and_return(comment)
       get 'show', id: blog.id

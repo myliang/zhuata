@@ -1,4 +1,2 @@
-class FictionsController < ApplicationController
-  def index
-  end
+class FictionsController < ContentController
 end

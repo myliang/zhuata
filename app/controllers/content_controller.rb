@@ -1,6 +1,7 @@
 class ContentController < BaseController
 
-  before_filter :build_user
+  before_filter :build_user, only: [:index]
+  before_filter :hot_tags, only: [:index, :tag]
 
   def tag
     index
@@ -8,10 +9,10 @@ class ContentController < BaseController
   end
 
   def show 
-    unless instance_model_name.user == current_user
-      instance_model_name.update_read_count
+    unless instance_model.user == current_user
+      instance_model.update_read_count
     end
-    @comment = Comment.new(:commentable => instance_model_name)
+    @comment = Comment.new(:commentable => instance_model)
   end
 
   private
@@ -20,6 +21,10 @@ class ContentController < BaseController
       @user = User.find(params[:user_id])
       @message = Message.new(to_user: @user)
     end
+  end
+
+  def hot_tags
+    @hot_tags = "#{controller_name.classify}Tag".constantize.sort(:counter.desc).limit(10)
   end
 
 end
