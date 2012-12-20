@@ -1,13 +1,12 @@
 - if not @user and @hot_tags
   ul.nav.stacked
     li.active
-      a 
-        | 热门标签
+      a 热门标签
     - @hot_tags.each do |tag|
       li
         = link_to "/#{controller_name}/tag/#{tag.name}" do
-          = tag.name
-          strong.gray
+          strong= tag.name
+          strong.gray-light
             |&nbsp;&nbsp;&times;&nbsp;
             = "#{tag.counter}"
 

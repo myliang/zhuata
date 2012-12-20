@@ -17,7 +17,7 @@
             strong=@user.send "#{ele.pluralize}_count"
             = name
     .footer
-      = render partial: "messages/new"
+      / = render partial: "messages/new"
   ul.nav.stacked
     - user_menus(@user) do |ele, name, url, active|
       li class=active

@@ -1,0 +1,8 @@
+.items.border
+  .item.header
+    h5= t("helpers.message.#{action_name}")
+  = render @messages
+  .item.footer= page @messages
+
+- content_for :sidebar do
+  = user_message_navs

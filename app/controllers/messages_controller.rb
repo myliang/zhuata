@@ -2,12 +2,21 @@ class MessagesController < BaseController
 
   before_filter :authenticate_user!
 
+  def unread
+    params[:state] = 0
+    to
+  end
+
   def to
-    @messages = current_user.receive_messages
+    params[:to_user_id] = current_user.id
+    index
+    render :index
   end
 
   def from
-    @messages = current_user.send_messages
+    params[:from_user_id] = current_user.id
+    index
+    render :index
   end
 
   def create

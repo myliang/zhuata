@@ -7,6 +7,8 @@ class Message
   key :text, String, required: true
   key :state, Integer, default: 0
 
+  timestamps!
+
   before_save :to_user_unread_messages_count
 
   private

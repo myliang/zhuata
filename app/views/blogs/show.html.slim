@@ -25,3 +25,7 @@
     =render :partial => "comments/new"
   #js-paginate-result.items
   .item.footer= ajax_page(blog_comments_path(@blog.id))
+
+- content_for :sidebar do
+  = render partial: "partials/new"
+  = render partial: "related"

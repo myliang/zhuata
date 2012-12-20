@@ -30,9 +30,10 @@ Zhuata::Application.routes.draw do
   end
 
   resources :comments
-  resources :messages do
+  resources :messages, only: [:create] do
     collection do
       get 'to'
+      get 'unread'
       get 'from'
     end
   end
@@ -44,8 +45,6 @@ Zhuata::Application.routes.draw do
   match ":user_id/compares" => "compares#index", :as => :user_compares
   match ":user_id/fictions" => "fictions#index", :as => :user_fictions
   match ":user_id/pictures" => "pictures#index", :as => :user_pictures
-  match ":user_id/messages/from" => "messages#from"
-  match ":user_id/messages/to" => "messages#to"
 
   # Sample resource route with options:
   #   resources :products do
@@ -88,5 +87,5 @@ Zhuata::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id))(.:format)'
+  # match ':controller(/:action(/:id))(.:format)'
 end

@@ -1,0 +1,15 @@
+ruby: 
+  user = User.new
+  if action_name == "from"
+    user = message.from_user
+  else
+    user = message.to_user
+  end
+.item
+  .content.small
+    =link_to image_tag(user.avatar.url(:middle)), user_path(user.id)
+    p.body
+      = raw message.text
+    .footer
+      =link_to user.name, user_path(user.id)
+      span= time_ago_in_words message.created_at

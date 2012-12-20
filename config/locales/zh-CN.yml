@@ -8,7 +8,10 @@ zh-CN:
   models: &models
     user: "用户"
     blog: "blog"
+    message: "消息"
   attributes: &attributes
+    message: 
+      text: "内容"
     blog:
       title: "标题"
       text: "内容"
@@ -159,6 +162,13 @@ zh-CN:
         one: 有 1 个错误发生导致「%{model}」无法被保存。
         other: 有 %{count} 个错误发生导致「%{model}」无法被保存。
   helpers:
+    message:
+      to: 我收到的消息
+      from: 我发送的消息
+      unread: 未读消息
+    state:
+      read: 已读
+      unread: 未读
     select:
       prompt: 请选择
     submit:
