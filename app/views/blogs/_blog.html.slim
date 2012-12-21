@@ -5,7 +5,7 @@
     .header
       =link_to user.name, user_path(user.id)
       |&nbsp;&bull; 
-      =link_to blog.title, blog_path(blog)
+      =link_to raw(blog.title), blog_path(blog)
     p.body
       = raw cut_remove_html(blog.text, 200)
     ul.nav.pills.small

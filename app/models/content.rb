@@ -18,6 +18,12 @@ class Content
 
   timestamps!
 
+  # full text index
+  searchable do
+    text :title, stored: true
+    time :created_at
+  end
+
   ensure_index :user_id
 
   def update_read_count

@@ -26,6 +26,9 @@ Zhuata::Application.routes.draw do
   #   resources :products
 
   resources :compares, :fictions, :pictures, :blogs do
+    collection do
+      get 'search'
+    end
     resources :comments, only: [:index]
   end
 

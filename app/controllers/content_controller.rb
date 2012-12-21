@@ -1,8 +1,26 @@
 class ContentController < BaseController
 
   before_filter :build_user, only: [:index]
-  before_filter :hot_tags, only: [:index, :tag]
+  before_filter :hot_tags, only: [:index, :tag, :search]
   before_filter :related_models, only: [:show, :edit]
+
+  def search
+    search = model_class.search do
+      fulltext params[:q] do
+        highlight :title
+      end
+      order_by :created_at, :desc
+      paginate page: params[:page], per_page: 20
+    end
+
+    search.each_hit_with_result do |hit, result|
+      result.title = hit.highlights(:title).map do |highlight|
+        highlight.format { |word| "<span style='color: #DD4B39;'>#{word}</span>" }
+      end.join
+    end
+    instance_models_set search.results
+    render :index
+  end
 
   def tag
     index

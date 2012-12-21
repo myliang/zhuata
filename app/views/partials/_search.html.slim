@@ -1,2 +1,2 @@
-= form_tag '', :method => :get, :class => "form pull-left" do
-  = search_field_tag "q", "", :class => "search"
+= form_tag "/#{controller_name}/search", :method => :get, :class => "form pull-left" do
+  = search_field_tag "q", params[:q], :class => "search"
