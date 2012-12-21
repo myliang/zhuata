@@ -21,6 +21,11 @@
         span
           = t_submit("read")
           = " #{@blog.read_count}"
+        - if current_user == user
+          .pull-right
+            = link_to t("helpers.submit.edit", model: ""), edit_blog_path(@blog)
+            a data-method="delete" href="#{blog_path(@blog)}" rel="nofollow"
+              = t("helpers.submit.delete", model: "")
   .item
     p= raw @blog.text
   .item.active
