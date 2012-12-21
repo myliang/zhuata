@@ -16,6 +16,10 @@
       .fr
         = f.label :text, class: "label"
         .fd
-          = f.text_area :text, id: "wysiwyg"
+          = f.text_area :text, id: "wysiwyg", style: "width:98%; height: 400px;"
       .form-actions
         = f.submit t_submit(submit_name), class: "btn blue"
+
+- content_for :sidebar do
+  .module.border
+    = render partial: "users/show_base", locals: {user: current_user}

@@ -1,0 +1,10 @@
+.content
+  =link_to image_tag(user.avatar.url(:middle)), user_path(user.id)
+  .header
+    span=user.name
+    |&nbsp;&bull; 
+    span=user.real_name
+  .body
+    = user.bio
+    = user.website
+  .footer= user.location

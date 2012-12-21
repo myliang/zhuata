@@ -7,3 +7,8 @@
     .footer
       =link_to user.name, user_path(user.id)
       span= time_ago_in_words comment.created_at
+      /.pull-right
+        a class="js-comment-reply-link" href="javascript:void(0);" data-comment-id="#{comment.id}" 
+          =t_submit("reply")
+    /div style="display:none; margin-top: 5px;"
+    /.items

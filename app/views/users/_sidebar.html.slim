@@ -1,15 +1,6 @@
 - if @user
   .module.border
-    .content
-      =link_to image_tag(@user.avatar.url(:middle)), user_path(@user.id)
-      .header
-        span=@user.name
-        |&nbsp;&bull; 
-        span=@user.real_name
-      .body
-        = @user.bio
-        = @user.website
-      .footer= @user.location
+    = render partial: "show_base", locals: {user: @user}
     ul.nav.stretched
       - user_menus(@user) do |ele, name, url, active|
         li

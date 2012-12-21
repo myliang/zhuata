@@ -1,0 +1,9 @@
+- if user_signed_in?
+  = form_for(:reply, url: replies_path, html: {class: "form"}) do |f|
+    = f.hidden_field :comment_id
+    = f.text_area :text, class: "js-textarea", style: "width: 99%;"
+    = f.submit "#{t("helpers.submit.title", model: t("helpers.submit.reply"))} Ctrl+Enter", 
+      class: "btn blue disabled js-form-reply"
+- else
+  p
+    |需先登录，方可回复

@@ -30,6 +30,7 @@ Zhuata::Application.routes.draw do
   end
 
   resources :comments
+  # resources :replies, only: [:create]
   resources :messages, only: [:create] do
     collection do
       get 'to'

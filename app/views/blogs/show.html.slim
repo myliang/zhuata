@@ -1,4 +1,6 @@
 - user = @blog.user || User.new
+#new_reply_wrapper style="display:none;"
+  =render partial: "replies/new"
 .items.border
   .item
     .content.big
@@ -23,7 +25,7 @@
     p= raw @blog.text
   .item.active
     =render :partial => "comments/new"
-  #js-paginate-result.items
+  #js_paginate_result.items
   .item.footer= ajax_page(blog_comments_path(@blog.id))
 
 - content_for :sidebar do
