@@ -32,6 +32,7 @@ Zhuata::Application.routes.draw do
     resources :comments, only: [:index]
   end
 
+  resources :urls, only: [:index]
   resources :comments
   # resources :replies, only: [:create]
   resources :messages, only: [:create] do
@@ -49,6 +50,12 @@ Zhuata::Application.routes.draw do
   match ":user_id/compares" => "compares#index", :as => :user_compares
   match ":user_id/fictions" => "fictions#index", :as => :user_fictions
   match ":user_id/pictures" => "pictures#index", :as => :user_pictures
+
+  match ":type/urls" => "urls#index"
+
+  match "fiction/urls" => "urls#index"
+  match "picture/urls" => "urls#index"
+  match "compare/urls" => "urls#index"
 
   # Sample resource route with options:
   #   resources :products do

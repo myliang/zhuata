@@ -1,0 +1,3 @@
+class FictionUrl < Url
+
+end
