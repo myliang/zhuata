@@ -1,3 +1,7 @@
-class Blog < Content
+require 'models/content_field'
+
+class Blog 
+
+  include ContentField
 
 end

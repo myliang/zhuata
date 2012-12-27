@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Fiction do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:fiction) { FactoryGirl.create(:fiction) }
+
+  it "errors should be empty" do
+    fiction.errors.should be_empty
+  end
 end

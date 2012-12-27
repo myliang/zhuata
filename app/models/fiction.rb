@@ -1,6 +1,13 @@
-class Fiction < Content
+require 'models/spider_field'
+require 'models/content_field'
 
-  key :url, String
+class Fiction 
+
+  include ContentField
+  include SpiderField
+
   key :author, String, required: true
+
+  many :chapters
 
 end

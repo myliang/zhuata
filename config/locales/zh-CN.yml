@@ -9,9 +9,13 @@ zh-CN:
     user: "用户"
     blog: "blog"
     message: "消息"
+    fiction: "小说"
   attributes: &attributes
     message: 
       text: "内容"
+    fiction:
+      url: "解析地址"
+      author: "作者"
     blog:
       title: "标题"
       text: "内容"

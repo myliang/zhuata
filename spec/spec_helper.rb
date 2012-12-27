@@ -28,8 +28,15 @@ Spork.prefork do
     config.include Devise::TestHelpers, type: :controller
     config.include ControllerMacros, type: :controller
 
+    config.before :each do
+      # sunspot
+      ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
+    end
+
     config.after :each do
       [User, Content, Comment, Tag].each { |name| name.destroy_all }
+      # sunspot 
+      ::Sunspot.session = ::Sunspot.session.original_session
     end
 
   end
