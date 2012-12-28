@@ -50,6 +50,9 @@ class BaseController < ApplicationController
       user_id = instance_model.user_id
     end
 
+    puts "::::#{instance_model}"
+    puts "::::#{user_id}== session.user.id = #{current_user.id}"
+
     unless user_id == current_user.id
       flash[:alert] = I18n.t("errors.messages.access_denied")
       redirect_to index_url

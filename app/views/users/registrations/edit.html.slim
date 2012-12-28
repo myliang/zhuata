@@ -33,4 +33,7 @@
         = f.submit t("devise.base.update"), :class => "btn blue"
 
 - content_for :sidebar do
+  = render partial: "partials/new"
+  .module.border
+    = render partial: "users/show_base", locals: {user: @user}
   = edit_user_tabs

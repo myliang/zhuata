@@ -1,0 +1,11 @@
+=alert
+.items.border
+  .item.header
+    h5= t("models.fiction")
+  = render @fictions
+  .item.footer= page @fictions
+
+- content_for :sidebar do
+  = render partial: "partials/new"
+  = render partial: "partials/hot_tags"
+  = render partial: "users/sidebar"

@@ -1,0 +1,37 @@
+= alert(@fiction)
+.module.border
+  .header
+    h5= t_form_title(@fiction, "edit")
+  .body
+    = form_for(@fiction, url: fiction_path, html: {class: "form"}) do |f|
+      =f.hidden_field :author, value: "default"
+      =f.hidden_field :title, value: "default"
+      =f.hidden_field :text, value: "default"
+      .fr
+        = f.label :url, class: "label"
+        .fd
+          = f.text_field :url, style: "width: 80%;"
+      .fr
+        = f.label :title, class: "label"
+        .fd
+          = f.text_field :title, style: "width: 80%;", disabled: true
+      .fr
+        = f.label :tags, class: "label"
+        .fd
+          = f.text_field :new_tags, 
+            value: @fiction.new_tags || @fiction.tags.join(',')
+      .fr
+        = f.label :author, class: "label"
+        .fd
+          = f.text_field :author, disabled: true
+      .fr
+        = f.label :text, class: "label"
+        .fd
+          = f.text_area :text, style: "width: 98%; height: 200px;", disabled: true
+      .form-actions
+        = f.submit t_submit("update"), class: "btn blue"
+
+- content_for :sidebar do
+  = render partial: "partials/new"
+  .module.border
+    = render partial: "users/show_base", locals: {user: current_user}

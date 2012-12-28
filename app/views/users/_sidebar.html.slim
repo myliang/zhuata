@@ -1,14 +1,6 @@
 - if @user
   .module.border
-    = render partial: "show_base", locals: {user: @user}
-    ul.nav.stretched
-      - user_menus(@user) do |ele, name, url, active|
-        li
-          = link_to url do
-            strong=@user.send "#{ele.pluralize}_count"
-            = name
-    .footer
-      / = render partial: "messages/new"
+    = render partial: "users/show_base", locals: {user: @user}
   ul.nav.stacked
     - user_menus(@user) do |ele, name, url, active|
       li class=active

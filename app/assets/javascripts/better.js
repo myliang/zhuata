@@ -7,7 +7,6 @@
     data: function(_self, key, value_callback) {
       var cache;
       cache = _self.data(key);
-      console.log(':::cache', key, cache);
       if (cache == null) {
         cache = value_callback.call(_self);
         _self.data(key, cache);
@@ -230,10 +229,8 @@
       }
       if (!this.self.hasClass('active')) {
         this.show();
-        this.self.addClass('active');
       } else {
         this.hide();
-        this.self.removeClass('active');
       }
       return this;
     },
@@ -243,11 +240,11 @@
       this.body = this.get_content();
       this.arrow_doc = $("<div class=\"" + this.arrow_doc_class + "\"></div>");
       $(document.body).append(this.body).append(this.arrow_doc);
-      this.body.on('click', function() {
+      this.body.off('click').on('click', function() {
         return false;
       });
-      $('.close', this.body).on('click', function() {
-        _this.toggle();
+      $('.close', this.body).off('click').on('click', function() {
+        _this.hide();
         return false;
       });
       offset = new util.offset(this.self, this.body, this.offset);
@@ -261,6 +258,7 @@
       }
       this.arrow_doc.addClass(this.direction).css(offset.arrow(this.direction));
       this.body.css(temp_offset).show();
+      this.self.addClass('active');
       return this;
     },
     hide: function() {
@@ -270,6 +268,7 @@
         this.body.hide();
       }
       this.arrow_doc.remove();
+      this.self.removeClass('active');
       return this;
     },
     get_content: function() {
@@ -346,168 +345,10 @@
 
   $(document).on('click', function() {
     $.each(cache_objects, function(index, ele) {
-      return ele.toggle();
+      return ele.hide();
     });
     return cache_objects = [];
   });
-
-  /*
-  $ = jQuery
-  
-  
-  _popup = (self, option) ->
-    $.extend(@, option)
-    @self = $(self)
-    @target = @_target()
-    @target.appendTo(document.body)
-  
-    # bind event
-    # binder = if @live then "live" else "bind"
-    # @self[binder](@trigger+".popup", (event)=> @toggle(event))
-  
-    # target old offset
-    to_offset = new util.offset(@self, @target, @arrow)
-    @to_os = @_target_offset(to_offset)
-    @to_os.width = @to_os.w
-    @to_os.height = @to_os.h
-    @to_os.overflow = 'hidden'
-    @to_os.opacity = 0
-  
-    @
-  
-  _popup:: =
-    toggle: ->
-      return false if @target.is(@except) or @target.find('.popup-box').is(@except)
-  
-      @content = @_content()
-      # bind html hide
-      $(document).rebind 'click.popup', (event)=> @hide(true)
-  
-  
-      # target new offset(contain content)
-      tn_offset = new util.offset(@self, @target, @arrow, @content)
-      @tn_os = @_target_offset(tn_offset)
-      @tn_os.width = @tn_os.w
-      @tn_os.height = @tn_os.h
-      @tn_os.opacity = 1
-  
-      # arrow
-      @tn_arrow = tn_offset.arrow(@position)
-  
-      # is or not target bind date self
-      @isself = if @target.data('bind_data')? then @target.data('bind_data').is(@self) else true
-      if @target.css('display') is 'none' or !@isself
-        @show()
-      else
-        @hide()
-      false
-    show: ->
-      @after.show.call(@self)
-      tc_before = left: 0, top: 0
-      tc_after = opacity: 1, top: 0
-  
-      switch @position
-        when "left", "center"
-          tc_before.left = @tn_os.width
-          tc_after.left = 0
-        when "right"
-          tc_before.left = -@tn_os.width
-          tc_after.left = 0
-        when "top"
-          tc_before.top = @tn_os.height
-          tc_after.top = 0
-        when "bottom"
-          tc_before.top = -@tn_os.height
-          tc_after.top = 0
-  
-      # is self
-      if @isself
-        @target.css(@to_os)
-        $('.popup-arrow').css(@tn_arrow)
-      else
-        @hide()
-  
-      $('.popup-arrow').addClass(@position).show().animate(@tn_arrow)
-      @target.show().animate(@tn_os,
-        => 
-          @target.find('.popup-box').css(tc_before)
-          .html(@content.outerHtml()).animate(tc_after,
-            => @target.css({overflow: 'visible'})))
-  
-      @target.data('bind_data', @self)
-  
-    # flag is or not self
-    hide: (flag)->
-      # return if @target.css('display') == 'none'
-      if flag
-        $(document).off 'click.popup'
-  
-      @after.hide.call(if @isself or flag then @self else @target.data('bind_data'))
-      tc = opacity: 0
-      switch @position
-        when "left", "center"
-          tc.left = @tn_os.width
-        when "right"
-          tc.left = -@tn_os.width
-        when "top"
-          tc.top = @tn_os.height
-        when "bottom"
-          tc.top = -@tn_os.height
-  
-      @target.css({overflow: 'hidden'}).find('.popup-box').animate(tc,
-        => 
-          if @isself or flag 
-            $('.popup-arrow').removeClass(@position).hide()
-            @target.animate(@to_os, => @target.hide()))
-  
-      @target.data('bind_data', null)
-  
-    _target_offset: (util_offset)->
-      t_os = util_offset[@position]()
-      # if position is auto to cal 
-      if @position is 'auto'
-        @position = t_os
-        t_os = util_offset[@position]()
-      t_os
-    _target: ->
-      t = $('.popup-box-outer')
-      unless t[0]?
-        t = $(@template) 
-        $(document.body).append('<div class="popup-arrow"></div>')
-      t
-    _content: ->
-      $(@self.attr('href'))
-  
-  $.fn.popup = (option) ->
-    option = $.extend({}, $.fn.popup.defaults, option || {})
-    binder = if option.live then "live" else "bind"
-    @[binder] option.trigger + ".popup", -> 
-      $(@).wrapData('popup', -> new _popup(@, option)).toggle()
-  
-    @
-  
-  $.fn.popup.defaults =
-    position: "auto" # center left top right bottom
-    live: false
-    trigger: "click"
-    arrow: 20
-    duration: 1000
-    except: ':animated'
-    template: """<div class="popup-box-outer">
-        <div class="popup-box"></div>
-      </div>
-      """
-    after: 
-      show: -> @addClass('actived')
-      hide: -> @removeClass('actived')
-  
-  
-  # bind html hide
-  $(document).on 'click.popupouter', '.popup-box-outer',
-    (event)-> 
-      event.stopPropagation()
-  */
-
 
 }).call(this);
 // Generated by CoffeeScript 1.3.3
@@ -543,7 +384,7 @@
     binder = option.live ? "live" : "bind";
     eventin = option.trigger === "hover" ? "mouseenter" : "foucs";
     eventout = option.trigger === "hover" ? "mouseleave" : "blur";
-    if (option.trigger.indexOf("click")) {
+    if (option.trigger.indexOf("click" === !-1)) {
       this[binder](option.trigger_name(), function() {
         get_tip(this, option).toggle();
         return false;

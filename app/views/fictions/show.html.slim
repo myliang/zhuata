@@ -6,10 +6,10 @@
       .header
         =link_to user.name, user_path(user.id)
         |&nbsp;&bull; 
-        =link_to @fiction.title, blog_path(@fiction)
+        =link_to @fiction.title, fiction_path(@fiction)
       ul.nav.pills.small
         - for tag in @fiction.tags
-          li=link_to tag, tag_blogs_path(tag)
+          li=link_to tag, tag_fictions_path(tag)
       .footer
         span= time_ago_in_words @fiction.created_at
         /! =link_to "#js-content-comments" do
@@ -21,15 +21,15 @@
           = " #{@fiction.read_count}"
         - if current_user == user
           .pull-right
-            = link_to t("helpers.submit.edit", model: ""), edit_blog_path(@fiction)
-            a data-method="delete" href="#{blog_path(@fiction)}" rel="nofollow"
+            = link_to t("helpers.submit.edit", model: ""), edit_fiction_path(@fiction)
+            a data-method="delete" href="#{fiction_path(@fiction)}" rel="nofollow"
               = t("helpers.submit.delete", model: "")
   .item
     p= raw @fiction.text
   .item.active
     =render :partial => "comments/new"
   #js_paginate_result.items
-  .item.footer= ajax_page(blog_comments_path(@fiction.id))
+  .item.footer= ajax_page(fiction_comments_path(@fiction.id))
 
 - content_for :sidebar do
   = render partial: "partials/new"

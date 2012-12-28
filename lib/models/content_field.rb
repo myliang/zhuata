@@ -1,5 +1,10 @@
 # coding: utf-8
 module ContentField
+
+  STATE_WAIT = 1
+  STATE_DOING = 2
+  STATE_FINISHED = 3
+
   def self.included(mod)
     # puts ":::::::mod.name==#{mod}"
     # mod.send :include, ::MongoMapper::Document
@@ -18,6 +23,9 @@ module ContentField
       key :title, String, required: true, length: {maximum: 100}
       key :text, String, required: true, length: {maximum: 500000}
 
+      # 1 wait, 2 handling.. , 3 finished
+      key :state, Integer, default: 1
+
       # update attibute add_tags and remove_tags is Array
       attr_accessor :new_tags
 
@@ -26,6 +34,7 @@ module ContentField
       # full text index
       searchable do
         text :title, stored: true
+        integer :state
         time :created_at
       end
 

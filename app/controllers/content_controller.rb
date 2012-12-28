@@ -9,6 +9,7 @@ class ContentController < BaseController
       fulltext params[:q] do
         highlight :title
       end
+      with state: SpiderField::STATE_FINISHED
       order_by :created_at, :desc
       paginate page: params[:page], per_page: 20
     end
@@ -20,6 +21,13 @@ class ContentController < BaseController
     end
     instance_models_set search.results
     render :index
+  end
+
+  def index
+    unless params[:user_id]
+      params[:state] = ::ContentField::STATE_FINISHED
+    end
+    super
   end
 
   def tag
