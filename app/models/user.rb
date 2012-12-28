@@ -2,31 +2,15 @@ class User
   include MongoMapper::Document
   include MongoMapper::Paperclip
 
-  many :blogs
-  many :comments
-
-  many :send_messages, class_name: 'Message'
-  many :receive_messages, class_name: 'Message'
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+  ## 
   devise :database_authenticatable, :registerable, # :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessor :password, :password_confirmation, :current_password
-
-  [:comments, :blogs, :contents, :compares, :fictions, :pictures].each do |name|
-    key "#{name}_count", Integer, default: 0
-  end
-
-  # count
-  key :unread_messages_count, Integer, default: 0
-  # key :unread_comments_count, Integer, default: 0
-
   ## Database authenticatable
-  key :email,               String
-  # key :password,            String
+  key :email,               String, required: true
   key :encrypted_password,  String
 
   ## extend information
@@ -36,13 +20,11 @@ class User
   key :website, String, length: {maximum: 50}
   key :bio, String, length: {maximum: 200}
 
-  validate :website,
-    format: {with: /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@\[\]\':+!]*([^\"\"])*$/, allow_blank: true}
   ## Recoverable
-  key :reset_password_token,    String
   key :reset_password_sent_at,  Time
 
   ## Rememberable
+  key :remember_token, String
   key :remember_created_at,  Time
 
   ## Trackable
@@ -66,22 +48,39 @@ class User
   ## Token authenticatable
   # key :authentication_token,  String
 
+  # count
+  key :unread_messages_count, Integer, default: 0
+  # key :unread_comments_count, Integer, default: 0
 
-  # key :state, Integer, :required => true, :default => 1
+  many :blogs
+  many :comments
+
+  many :send_messages, class_name: 'Message'
+  many :receive_messages, class_name: 'Message'
+
+
+  attr_accessor :password_confirmation, :current_password
+
+  [:comments, :blogs, :contents, :compares, :fictions, :pictures].each do |name|
+    key "#{name}_count", Integer, default: 0
+  end
 
   timestamps!
 
   has_mm_attached_file :avatar,
     default_style: :middle,
     styles: { medium: "240x240#", thumb: "120x120#", 
-      middle: "48x48#", small: "24x24#"},
-      # :url => "upload/:class/:attachment/:hashed_path/:id_:style.:extendsion",
-      url: "/upload/:class/:attachment/:id/:style.:extension",
-      path: "#{Rails.root}/public/upload/:class/:attachment/:id/:style.:extension"
+              middle: "48x48#", small: "24x24#"},
+              # :url => "upload/:class/:attachment/:hashed_path/:id_:style.:extendsion",
+              url: "/upload/:class/:attachment/:id/:style.:extension",
+              path: "#{Rails.root}/public/upload/:class/:attachment/:id/:style.:extension"
   # :default_url => ":style.jpg"
 
   validates_attachment_size :avatar, less_than: 2.megabyte # about 2 Mb
   # validates_attachment_content_type, :avatar, :content_type => 'image/jpeg'
+
+  validate :website,
+    format: {with: /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@\[\]\':+!]*([^\"\"])*$/, allow_blank: true}
 
   def update_with_password(params, *options)
     current_password = params.delete(:current_password)
