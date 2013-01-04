@@ -4,13 +4,14 @@
     .content.big
       =link_to image_tag(user.avatar.url(:thumb)), user_path(user.id)
       .header
-        =link_to user.name, user_path(user.id)
+        span= @fiction.author
         |&nbsp;&bull; 
-        =link_to @fiction.title, fiction_path(@fiction)
+        =link_to @fiction.title, @fiction.url
       ul.nav.pills.small
         - for tag in @fiction.tags
           li=link_to tag, tag_fictions_path(tag)
       .footer
+        =link_to user.name, user_path(user.id)
         span= time_ago_in_words @fiction.created_at
         /! =link_to "#js-content-comments" do
         span

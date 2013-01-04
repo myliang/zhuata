@@ -11,7 +11,7 @@ module ApplicationHelper
   MENUS = ["compare", "fiction", "picture", "blog"]
 
   def t_form_title(model, action)
-    I18n.t("helpers.submit.#{action}", :model => t("models.#{model.class.to_s.downcase}"))
+    I18n.t("helpers.submit.#{action}", model: t("models.#{model.class.to_s.downcase}"))
   end
 
   def t_submit(action)
@@ -21,8 +21,12 @@ module ApplicationHelper
   def new_menus
     content_tag :ul, class: "menu lt" do
       MENUS.map do |ele|
-        content_tag :li,
-          link_to(t(ele, scope: :menus), "/#{ele.pluralize}/new")
+        if ele == controller_name.singularize
+          ""
+        else
+          content_tag :li,
+            link_to(t(ele, scope: :menus), "/#{ele.pluralize}/new")
+        end
       end.join.html_safe
     end
   end
