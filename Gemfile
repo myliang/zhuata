@@ -35,8 +35,12 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'sunspot_mongo_mapper'
 
+# markdown and code heightlihgt
+gem 'redcarpet'
+gem 'coderay'
+
 # bootstrap
-gem 'twitter-bootstrap-rails'
+# gem 'twitter-bootstrap-rails'
 
 # unless mongodb paginate
 # gem 'will_paginate'

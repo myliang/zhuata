@@ -7,6 +7,8 @@ module ApplicationHelper
   include MessageHelper
   include PageHelper
   include StringHelper
+  include RedcarpetHelper
+  include CoderayHelper
 
   MENUS = ["compare", "fiction", "picture", "blog"]
 
