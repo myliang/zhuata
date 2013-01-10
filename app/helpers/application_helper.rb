@@ -1,6 +1,8 @@
 require 'helpers/message_helper'
 require 'helpers/page_helper'
 require 'helpers/string_helper'
+require 'helpers/redcarpet_helper'
+require 'helpers/coderay_helper'
 
 module ApplicationHelper
 
