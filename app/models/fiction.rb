@@ -7,6 +7,7 @@ class Fiction
   include SpiderField
 
   key :author, String, required: true
+  key :chapter_base_path, String
 
   many :chapters
 
