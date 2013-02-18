@@ -8,7 +8,7 @@ module ContentField
   def self.included(mod)
     # puts ":::::::mod.name==#{mod}"
     # mod.send :include, ::MongoMapper::Document
-    mod.class_eval do 
+    mod.class_eval do
 
       include ::MongoMapper::Document
 

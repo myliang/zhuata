@@ -2,7 +2,7 @@ module SpiderField
 
   def self.included(mod)
 
-    mod.key :url, String
+    mod.key :url, String, unique: true
 
   end
 

@@ -1,6 +1,6 @@
 # zh
 zh-CN:
-  menus: 
+  menus:
     compare: "比价"
     fiction: "小说"
     picture: "趣图"
@@ -11,14 +11,14 @@ zh-CN:
     message: "消息"
     fiction: "小说"
   attributes: &attributes
-    message: 
+    message:
       text: "内容"
     blog: &blog
       title: "标题"
       text: "内容"
       tags: "标签"
       tags_tip: "添加标签，用逗号分割"
-    fiction: 
+    fiction:
       <<: *blog
       url: "解析地址"
       author: "作者"
@@ -51,7 +51,7 @@ zh-CN:
     - 五
     - 六
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -77,7 +77,7 @@ zh-CN:
       long: ! '%Y年%b%d日'
       short: ! '%b%d日'
     month_names:
-    - 
+    -
     - 一月
     - 二月
     - 三月
@@ -179,7 +179,7 @@ zh-CN:
     submit:
       title: 提交%{model}
       create: 新建%{model}
-      new: 发布%{model}
+      new: 抓取%{model}
       save: 保存
       update: 更新
       edit: 编辑%{model}
@@ -261,7 +261,7 @@ zh-CN:
       <<: *models
     attributes:
       <<: *attributes
-    
+
   will_paginate:
     next_label: 下一页
     page_entries_info:

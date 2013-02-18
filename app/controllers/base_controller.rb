@@ -23,7 +23,7 @@ class BaseController < ApplicationController
     respond_with instance_model
   end
 
-  def destroy 
+  def destroy
     instance_model.destroy if instance_model
     respond_with instance_model, location: index_url
   end

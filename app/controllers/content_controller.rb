@@ -35,7 +35,7 @@ class ContentController < BaseController
     render :index
   end
 
-  def show 
+  def show
     unless instance_model.user == current_user
       instance_model.update_read_count
     end

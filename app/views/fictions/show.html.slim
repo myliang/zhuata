@@ -5,7 +5,7 @@
       =link_to image_tag(user.avatar.url(:thumb)), user_path(user.id)
       .header
         span= @fiction.author
-        |&nbsp;&bull; 
+        |&nbsp;&bull;&nbsp;
         =link_to @fiction.title, @fiction.url
       ul.nav.pills.small
         - for tag in @fiction.tags
@@ -31,7 +31,9 @@
     .item
       ul.nav-list
         - @fiction.chapters.each do |chapter|
-          li= link_to chapter.title, "#" 
+          li= link_to chapter.title, "/fictions/#{@fiction.id}/chapters?page=#{chapter.number}"
+  .item style="display:none"
+    = render partial: "chapter"
   .item.active
     =render :partial => "comments/new"
   #js_paginate_result.items

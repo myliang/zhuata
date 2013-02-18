@@ -1,7 +1,7 @@
-require 'models/spider_field'
 require 'models/content_field'
+require 'models/spider_field'
 
-class Fiction 
+class Fiction
 
   include ContentField
   include SpiderField

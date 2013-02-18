@@ -35,7 +35,7 @@ Spork.prefork do
 
     config.after :each do
       [User, Content, Comment, Tag].each { |name| name.destroy_all }
-      # sunspot 
+      # sunspot
       ::Sunspot.session = ::Sunspot.session.original_session
     end
 

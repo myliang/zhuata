@@ -5,7 +5,7 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  ## 
+  ##
   devise :database_authenticatable, :registerable, # :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
 
@@ -14,7 +14,7 @@ class User
   key :encrypted_password,  String
 
   ## extend information
-  key :name, String , required: true, length: {maximum: 16}
+  key :name, String , required: true, unique: true, length: {maximum: 16}
   key :real_name, String, length: {maximum: 20}
   key :location, String, length: {maximum: 20}
   key :website, String, length: {maximum: 50}
@@ -69,7 +69,7 @@ class User
 
   has_mm_attached_file :avatar,
     default_style: :middle,
-    styles: { medium: "240x240#", thumb: "120x120#", 
+    styles: { medium: "240x240#", thumb: "120x120#",
               middle: "48x48#", small: "24x24#"},
               # :url => "upload/:class/:attachment/:hashed_path/:id_:style.:extendsion",
               url: "/upload/:class/:attachment/:id/:style.:extension",

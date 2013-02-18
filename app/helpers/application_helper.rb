@@ -12,7 +12,7 @@ module ApplicationHelper
   include RedcarpetHelper
   include CoderayHelper
 
-  MENUS = ["compare", "fiction", "picture", "blog"]
+  MENUS = ["fiction", "picture", "blog"]
 
   def t_form_title(model, action)
     I18n.t("helpers.submit.#{action}", model: t("models.#{model.class.to_s.downcase}"))
@@ -46,7 +46,7 @@ module ApplicationHelper
     content_tag :ul, class: "nav" do
       MENUS.map do |ele|
         active = (controller_name == ele.pluralize and !params[:user_id]) ? "active" : ""
-        content_tag :li, 
+        content_tag :li,
           link_to(t(ele, scope: :menus), "/#{ele.pluralize}"),
           class: active
       end.join.html_safe

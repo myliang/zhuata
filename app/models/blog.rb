@@ -1,6 +1,6 @@
 require 'models/content_field'
 
-class Blog 
+class Blog
 
   include ContentField
 
