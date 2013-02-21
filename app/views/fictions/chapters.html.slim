@@ -1,3 +1,7 @@
-- content_for :sidebar do
-  = render partial: "partials/new"
-  = render partial: "partials/related_contents"
+=alert
+.items.border
+  .item.header
+    h5= @chapter.title
+  .item
+    p= raw @chapter.content
+  .item.footer= page @chapter

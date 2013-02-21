@@ -4,7 +4,8 @@ class BaseController < ApplicationController
   before_filter :access_denied, only: [:edit, :update, :destroy]
 
   def index
-    instance_models_set model_class.page(params)
+    result = model_class.page(params)
+    instance_models_set  result
   end
 
   def new; end

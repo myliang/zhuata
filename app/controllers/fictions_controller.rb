@@ -4,13 +4,23 @@ class FictionsController < ContentController
     build_model
     model = instance_model
     number = params[:page]
-    out_json = {content: "", per_page: 1, total_pages: model.chapters.length}
+    @chapter = Chapter.new
+
     if model.chapters.length >= number.to_i
       # read chapter_base_path + number.txt file
       file_name = "#{Rails.root}/data/fictions/#{model.chapter_base_path}/#{number}.txt"
-      out_json[:content] = IO.read(file_name)
+      begin
+        @chapter = model.chapters[number.to_i - 1]
+        @chapter.content = IO.read(file_name)
+
+      rescue => err
+        puts "::::#{err}"
+      end
     end
-    render :json => out_json
+
+    paginator = ::Plucky::Pagination::Paginator.new(model.chapters.length, number.to_i, 1)
+    @chapter.extend(::Plucky::Pagination::Decorator)
+    @chapter.paginator(paginator)
   end
 
 end

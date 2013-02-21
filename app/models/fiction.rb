@@ -11,4 +11,5 @@ class Fiction
 
   many :chapters
 
+
 end

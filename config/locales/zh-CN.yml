@@ -301,6 +301,7 @@ zh-CN:
       timeout: 您已登录超时，请重新登录.
       unauthenticated: 继续操作前请注册或者登录.
       unconfirmed: 继续操作前请先确认您的帐号.
+      not_found_in_database: 用户信息不存在
     mailer:
       confirmation_instructions:
         subject: 确认信息

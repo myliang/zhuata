@@ -29,9 +29,11 @@ module PageHelper
     html.html_safe
   end
 
-  def ajax_page(url)
+  def ajax_page(url, attrs = {})
+    attrs[:class_name] ||= "js-paginate"
+    attrs[:id] ||= "js-paginate-111"
     html= <<-HTML
-      <ul class="page js-paginate" data-url="#{url}">
+      <ul class="page #{attrs[:class_name]}" data-url="#{url}" id="#{attrs[:id]}">
         <li class="prev">
           <a href="#">&lt;&lt;</a>
         </li>
