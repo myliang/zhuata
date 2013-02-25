@@ -21,6 +21,8 @@ class FictionsController < ContentController
     paginator = ::Plucky::Pagination::Paginator.new(model.chapters.length, number.to_i, 1)
     @chapter.extend(::Plucky::Pagination::Decorator)
     @chapter.paginator(paginator)
+
+    render layout: 'simple'
   end
 
 end
