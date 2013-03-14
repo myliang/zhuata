@@ -1,0 +1,11 @@
+=alert
+.items.border
+  .item.header
+    h5= t("models.audio_book")
+  = render @audio_books
+  .item.footer= page @audio_books
+
+- content_for :sidebar do
+  = render partial: "partials/new"
+  = render partial: "partials/hot_tags"
+  = render partial: "users/sidebar"

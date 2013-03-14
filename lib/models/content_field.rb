@@ -20,8 +20,8 @@ module ContentField
       key :comments_count, Integer, default: 0
 
       # content
-      key :title, String, required: true, length: {maximum: 100}
-      key :text, String, required: true, length: {maximum: 500000}
+      key :title, String# , required: true, length: {maximum: 100}
+      key :text, String# , required: true, length: {maximum: 500000}
 
       # 1 wait, 2 handling.. , 3 finished
       key :state, Integer, default: 1

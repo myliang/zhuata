@@ -4,7 +4,7 @@
     =link_to image_tag(user.avatar.url(:middle)), user_path(user.id)
     .header
       =link_to user.name, user_path(user.id)
-      |&nbsp;&bull; 
+      |&nbsp;&bull;
       =link_to raw(fiction.title), fiction_path(fiction)
     p.body
       = raw cut_remove_html(fiction.text, 200)

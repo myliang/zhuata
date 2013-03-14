@@ -61,7 +61,7 @@ class User
 
   attr_accessor :password_confirmation, :current_password
 
-  [:comments, :blogs, :contents, :compares, :fictions, :pictures].each do |name|
+  [:comments, :blogs, :fictions, :audio_books].each do |name|
     key "#{name}_count", Integer, default: 0
   end
 

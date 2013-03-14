@@ -25,7 +25,7 @@ Zhuata::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :compares, :fictions, :pictures, :blogs do
+  resources :audio_books, :fictions, :pictures, :blogs do
     collection do
       get 'search'
     end
@@ -48,7 +48,7 @@ Zhuata::Application.routes.draw do
   match 'fictions/tag/:tags' => 'fictions#tag', :as => :tag_fictions
   match ":user_id" => "blogs#index", :as => :user
   match ":user_id/blogs" => "blogs#index", :as => :user_blogs
-  match ":user_id/compares" => "compares#index", :as => :user_compares
+  match ":user_id/audio_books" => "audio_books#index", :as => :user_audio_books
   match ":user_id/fictions" => "fictions#index", :as => :user_fictions
   match ":user_id/pictures" => "pictures#index", :as => :user_pictures
 

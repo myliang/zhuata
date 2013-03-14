@@ -12,10 +12,10 @@ module ApplicationHelper
   include RedcarpetHelper
   include CoderayHelper
 
-  MENUS = ["fiction", "picture", "blog"]
+  MENUS = ["fiction", "audio_book", "blog"]
 
   def t_form_title(model, action)
-    I18n.t("helpers.submit.#{action}", model: t("models.#{model.class.to_s.downcase}"))
+    I18n.t("helpers.submit.#{action}", model: t("models.#{model.class.to_s.tableize.singularize}"))
   end
 
   def t_submit(action)
@@ -29,7 +29,7 @@ module ApplicationHelper
           ""
         else
           content_tag :li,
-            link_to(t(ele, scope: :menus), "/#{ele.pluralize}/new")
+            link_to(t(ele, scope: :models), "/#{ele.pluralize}/new")
         end
       end.join.html_safe
     end
@@ -38,7 +38,7 @@ module ApplicationHelper
   def user_menus(user)
     MENUS.each do |ele|
       active = (controller_name == ele.pluralize and params[:user_id]) ? "active" : ""
-      yield(ele, t(ele, scope: :menus), "/#{user.id}/#{ele.pluralize}", active)
+      yield(ele, t(ele, scope: :models), "/#{user.id}/#{ele.pluralize}", active)
     end
   end
 
@@ -47,7 +47,7 @@ module ApplicationHelper
       MENUS.map do |ele|
         active = (controller_name == ele.pluralize and !params[:user_id]) ? "active" : ""
         content_tag :li,
-          link_to(t(ele, scope: :menus), "/#{ele.pluralize}"),
+          link_to(t(ele, scope: :models), "/#{ele.tableize}"),
           class: active
       end.join.html_safe
     end

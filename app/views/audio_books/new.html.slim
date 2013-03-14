@@ -1,0 +1,21 @@
+= alert(@audio_book)
+.module.border
+  .header
+    h5= t_form_title(@audio_book, "create")
+  .body
+    = form_for(@audio_book, url: audio_books_path, html: {class: "form"}) do |f|
+      =f.hidden_field :talker, value: "default"
+      =f.hidden_field :title, value: "default"
+      =f.hidden_field :text, value: "default"
+      .fr
+        = f.label :url, class: "label"
+        .fd
+          = f.text_field :url, style: "width: 80%;"
+      .form-actions
+        = f.submit t_submit("save"), class: "btn blue"
+
+- content_for :sidebar do
+  = render partial: "partials/new"
+  .module.border
+    = render partial: "users/show_base", locals: {user: current_user}
+

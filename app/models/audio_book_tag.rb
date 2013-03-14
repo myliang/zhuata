@@ -1,0 +1,3 @@
+class AudioBookTag < Tag
+
+end

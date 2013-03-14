@@ -1,15 +1,11 @@
 # zh
 zh-CN:
-  menus:
-    compare: "比价"
-    fiction: "小说"
-    picture: "趣图"
-    blog: "blog"
   models: &models
     user: "用户"
     blog: "blog"
     message: "消息"
     fiction: "小说"
+    audio_book: "有声读物"
   attributes: &attributes
     message:
       text: "内容"
@@ -22,6 +18,10 @@ zh-CN:
       <<: *blog
       url: "解析地址"
       author: "作者"
+    audio_book:
+      <<: *blog
+      url: "解析地址"
+      talker: "演说者"
     user:
       avatar_file_size: "头像的大小"
       settings:

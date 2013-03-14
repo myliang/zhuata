@@ -1,0 +1,44 @@
+- user = @audio_book.user || User.new
+.items.border
+  .item
+    .content.big
+      =link_to image_tag(user.avatar.url(:thumb)), user_path(user.id)
+      .header
+        span= @audio_book.talker
+        |&nbsp;&bull;&nbsp;
+        =link_to @audio_book.title, @audio_book.url
+      ul.nav.pills.small
+        - for tag in @audio_book.tags
+          li=link_to tag, tag_audio_books_path(tag)
+      .footer
+        =link_to user.name, user_path(user.id)
+        span= time_ago_in_words @audio_book.created_at
+        /! =link_to "#js-content-comments" do
+        span
+          = t_submit("comment")
+          = " #{@audio_book.comments_count}"
+        span
+          = t_submit("read")
+          = " #{@audio_book.read_count}"
+        - if current_user == user
+          .pull-right
+            = link_to t("helpers.submit.edit", model: ""), edit_audio_book_path(@audio_book)
+            a data-method="delete" href="#{audio_book_path(@audio_book)}" rel="nofollow"
+              = t("helpers.submit.delete", model: "")
+  .item
+    p= raw @audio_book.text
+  - if @audio_book.chapters.length > 0
+    .item#js-chapters
+      ul.nav-list
+        - @audio_book.chapters.each do |chapter|
+          li= link_to chapter.title, "/audio_books/#{@audio_book.id}/chapters?page=#{chapter.number}", target: "_blank"
+  / .item#js-chapter-content style="display:none"
+  /   = render partial: "chapter"
+  .item.active
+    =render :partial => "comments/new"
+  .items
+  .item.footer= ajax_page(audio_book_comments_path(@audio_book.id))
+
+- content_for :sidebar do
+  = render partial: "partials/new"
+  = render partial: "partials/related_contents"
