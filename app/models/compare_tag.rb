@@ -1,3 +1,0 @@
-class CompareTag < Tag
-
-end
