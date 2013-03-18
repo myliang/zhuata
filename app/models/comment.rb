@@ -3,7 +3,7 @@ class Comment
 
   key :text, String, required: true
 
-  many :replies
+  # many :replies
 
   timestamps!
 

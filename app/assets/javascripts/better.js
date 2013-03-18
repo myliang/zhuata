@@ -780,7 +780,7 @@
     $('.form.small .fd > input').on('keyup', input_label);
     $('.js-paginate').paginate({
       after: function(je, data) {
-        return je.prev().html(data.content);
+        return je.parent().prev().html(data.content);
       }
     });
     $('.js-textarea').on('keyup', text_area_key_up).on('blur', text_area_blur);

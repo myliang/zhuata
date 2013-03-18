@@ -1,27 +1,27 @@
-- user = audioBook.user || User.new
+- user = audio_book.user || User.new
 .item
   .content
     =link_to image_tag(user.avatar.url(:middle)), user_path(user.id)
     .header
       =link_to user.name, user_path(user.id)
-      |&nbsp;&bull;
-      =link_to raw(audioBook.title), audio_book_path(audioBook)
+      |&nbsp;&bull;&nbsp;
+      =link_to raw(audio_book.title), audio_book_path(audio_book)
     p.body
-      = raw cut_remove_html(audioBook.text, 200)
+      = raw cut_remove_html(audio_book.text, 200)
     ul.nav.pills.small
-      - for tag in audioBook.tags
+      - for tag in audio_book.tags
         li=link_to tag, tag_audio_books_path(tag)
     .footer
-      span= time_ago_in_words audioBook.created_at
+      span= time_ago_in_words audio_book.created_at
       span
         = t_submit("read")
-        = " #{audioBook.read_count}"
+        = " #{audio_book.read_count}"
       span
         = t_submit("comment")
-        = " #{audioBook.comments_count}"
+        = " #{audio_book.comments_count}"
       - if current_user == user
         .pull-right
-          = link_to t("helpers.submit.edit", model: ""), edit_audio_book_path(audioBook)
-          a data-method="delete" href="#{audio_book_path(audioBook)}" rel="nofollow"
+          = link_to t("helpers.submit.edit", model: ""), edit_audio_book_path(audio_book)
+          a data-method="delete" href="#{audio_book_path(audio_book)}" rel="nofollow"
             = t("helpers.submit.delete", model: "")
 

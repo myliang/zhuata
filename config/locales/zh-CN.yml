@@ -21,7 +21,7 @@ zh-CN:
     audio_book:
       <<: *blog
       url: "解析地址"
-      talker: "演说者"
+      talker: "播音"
     user:
       avatar_file_size: "头像的大小"
       settings:

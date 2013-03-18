@@ -45,7 +45,7 @@ module ApplicationHelper
   def menus
     content_tag :ul, class: "nav" do
       MENUS.map do |ele|
-        active = (controller_name == ele.pluralize and !params[:user_id]) ? "active" : ""
+        active = controller_name.singularize == ele ? "active" : ""
         content_tag :li,
           link_to(t(ele, scope: :models), "/#{ele.tableize}"),
           class: active

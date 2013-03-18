@@ -8,12 +8,14 @@ class CommentsController < BaseController
   end
 
   def index
-    ["Blog", "Compare", "Fiction", "Picture"].each do |str|
-      key = "#{str.downcase}_id"
+    ["Blog", "AudioBook", "Fiction", "Picture"].each do |str|
+      key = "#{str.tableize.singularize}_id"
+      puts "::::key=#{params[key]}"
       if params[key]
         params[:commentable_id] = params[key]
         params[:commentable_type] = str
         params.delete(key)
+        break
       end
     end
 

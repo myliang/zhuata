@@ -4,9 +4,9 @@
     h5= t_form_title(@fiction, "create")
   .body
     = form_for(@fiction, url: fictions_path, html: {class: "form"}) do |f|
-      =f.hidden_field :author, value: "default"
-      =f.hidden_field :title, value: "default"
-      =f.hidden_field :text, value: "default"
+      =f.hidden_field :author
+      =f.hidden_field :title
+      =f.hidden_field :text
       .fr
         = f.label :url, class: "label"
         .fd
