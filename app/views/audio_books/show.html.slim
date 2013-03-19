@@ -31,7 +31,7 @@
     .item#js-chapters
       ul.nav-list
         - @audio_book.chapters.each do |chapter|
-          li= link_to chapter.title, "/audio_books/#{@audio_book.id}/chapters?page=#{chapter.number}", target: "_blank"
+          li= link_to chapter.title, chapter.url, target: "_blank"
   / .item#js-chapter-content style="display:none"
   /   = render partial: "chapter"
   .item.active
