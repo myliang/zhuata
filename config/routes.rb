@@ -24,6 +24,10 @@ Zhuata::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  #
+  resources :audio_books do
+    get 'parse', on: :collection
+  end
 
   resources :audio_books, :fictions, :pictures, :blogs do
     collection do

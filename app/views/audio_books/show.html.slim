@@ -29,9 +29,10 @@
     p= raw @audio_book.text
   - if @audio_book.chapters.length > 0
     .item#js-chapters
-      ul.nav-list
+      ul.nav.pills.small
         - @audio_book.chapters.each do |chapter|
-          li= link_to chapter.title, chapter.url, target: "_blank"
+          li
+            = link_to chapter.title, chapter.url, target: "_blank"
   / .item#js-chapter-content style="display:none"
   /   = render partial: "chapter"
   .item.active
@@ -41,4 +42,8 @@
 
 - content_for :sidebar do
   = render partial: "partials/new"
+  .module.border
+    .inner
+      audio#js-audio-control controls="controls" autoplay="autoplay"
+        | Your browser does not support the audio tag.
   = render partial: "partials/related_contents"

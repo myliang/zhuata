@@ -22,17 +22,17 @@ module Spider
   end
 
   def self.read(hash, url)
-    domain_name = self.match(record.url, hash)
+    domain_name = self.match(url, hash)
     if domain_name
-      doc = Spider::Http.get(record.url)
+      doc = Spider::Http.get(url)
       hash[domain_name].read(doc)
     end
   end
 
   def self.match(url, hash)
-    domain_name = /www\.([^\.]*)/.match(record.url)[1]
+    domain_name = /www\.([^\.]*)/.match(url)[1]
     unless hash.include?(domain_name)
-      raise "not support this #{record.url} parse"
+      raise "not support this #{url} parse"
     end
     domain_name
   end
