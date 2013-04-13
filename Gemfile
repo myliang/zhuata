@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.1'
 
@@ -9,7 +10,7 @@ gem 'ruby_parser'
 
 # page template
 # gem 'haml'
-gem 'haml-rails'
+# gem 'haml-rails'
 gem 'slim'
 
 # form
