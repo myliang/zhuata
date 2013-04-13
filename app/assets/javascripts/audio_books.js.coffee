@@ -4,8 +4,8 @@
 
 $ ->
   # chapter link
-  current_chapter = null;
-  $('#js-chapters a').on('click', ->
+  current_chapter = null
+  $('#js-audio-book-chapters a').on('click', ->
     current_chapter_p = $(current_chapter).parent()
     if(null != current_chapter)
       current_chapter_p.removeClass('active')

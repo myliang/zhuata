@@ -28,7 +28,7 @@
   .item
     p= raw @audio_book.text
   - if @audio_book.chapters.length > 0
-    .item#js-chapters
+    .item#js-audio-book-chapters
       ul.nav.pills.small
         - @audio_book.chapters.each do |chapter|
           li
@@ -37,7 +37,7 @@
   /   = render partial: "chapter"
   .item.active
     =render :partial => "comments/new"
-  .items
+  #js_paginate_result.items
   .item.footer= ajax_page(audio_book_comments_path(@audio_book.id))
 
 - content_for :sidebar do

@@ -3,7 +3,8 @@
   .content
     =link_to image_tag(user.avatar.url(:middle)), user_path(user.id)
     .header
-      =link_to user.name, user_path(user.id)
+      /=link_to user.name, user_path(user.id)
+      span=audio_book.talker
       |&nbsp;&bull;&nbsp;
       =link_to raw(audio_book.title), audio_book_path(audio_book)
     p.body
@@ -12,6 +13,7 @@
       - for tag in audio_book.tags
         li=link_to tag, tag_audio_books_path(tag)
     .footer
+      =link_to user.name, user_path(user.id)
       span= time_ago_in_words audio_book.created_at
       span
         = t_submit("read")

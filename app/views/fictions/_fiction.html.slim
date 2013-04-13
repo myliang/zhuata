@@ -3,8 +3,9 @@
   .content
     =link_to image_tag(user.avatar.url(:middle)), user_path(user.id)
     .header
-      =link_to user.name, user_path(user.id)
-      |&nbsp;&bull;
+      /=link_to user.name, user_path(user.id)
+      span=fiction.author
+      |&nbsp;&bull;&nbsp;
       =link_to raw(fiction.title), fiction_path(fiction)
     p.body
       = raw cut_remove_html(fiction.text, 200)
@@ -12,6 +13,7 @@
       - for tag in fiction.tags
         li=link_to tag, tag_fictions_path(tag)
     .footer
+      =link_to user.name, user_path(user.id)
       span= time_ago_in_words fiction.created_at
       span
         = t_submit("read")

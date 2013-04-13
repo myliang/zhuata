@@ -28,7 +28,7 @@
   .item
     p= raw @fiction.text
   - if @fiction.chapters.length > 0
-    .item#js-chapters
+    .item
       ul.nav-list
         - @fiction.chapters.each do |chapter|
           li= link_to chapter.title, "/fictions/#{@fiction.id}/chapters?page=#{chapter.number}", target: "_blank"
@@ -36,7 +36,7 @@
   /   = render partial: "chapter"
   .item.active
     =render :partial => "comments/new"
-  .items
+  #js_paginate_result.items
   .item.footer= ajax_page(fiction_comments_path(@fiction.id))
 
 - content_for :sidebar do
