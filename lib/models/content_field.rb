@@ -24,7 +24,7 @@ module ContentField
       key :text, String# , required: true, length: {maximum: 500000}
 
       # 1 wait, 2 handling.. , 3 finished
-      key :state, Integer, default: 1
+      key :state, Integer, default: 3
 
       # update attibute add_tags and remove_tags is Array
       attr_accessor :new_tags

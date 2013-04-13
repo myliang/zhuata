@@ -1,6 +1,6 @@
 require 'models/content_field'
 require 'models/spider_field'
-require 'spider/audio_book'
+require 'spider/core'
 
 class AudioBook
 
@@ -11,8 +11,8 @@ class AudioBook
 
   many :chapters
 
-  before_create do |entity|
-    Spider.parse(Spider::AUDIO_BOOK_HASH, entity)
+  before_create do |record|
+    Spider.parse(Spider::AUDIO_BOOK_HASH, record)
   end
 
 
