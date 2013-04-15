@@ -2,10 +2,10 @@ module Spider
   module AudioBook
     class Fivetps
       def self.parse(doc, record)
-        record.title = doc.css('#i>b>h1')[0].text
+        record.title = doc.css('#i h1')[0].text
         doc.css('.ny_txt > ul').each do |ul|
           ps = ul.css('>span>p')
-          record.tags = ps[0].text.split(':')[1]
+          record.new_tags = ps[0].text.split(':')[1]
           record.talker = ps[1].text.split(':')[1]
           record.text = ul.css('>p')[0].text
         end

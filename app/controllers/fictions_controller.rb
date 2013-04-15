@@ -8,7 +8,7 @@ class FictionsController < ContentController
 
     if model.chapters.length >= number.to_i
       begin
-        @chapter = model.chapters[number.to_i - 1]
+        @chapter = model.chapters[number.to_i]
         @chapter.content = Spider.read(Spider::BOOK_HASH, @chapter.url)
       rescue => err
         puts "::::#{err}"
