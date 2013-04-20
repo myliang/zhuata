@@ -9,7 +9,11 @@ class BaseController < ApplicationController
   end
 
   def new; end
-  def show; end
+  def show
+    seo_msg(instance_model.title, 
+        "#{instance_model.title} #{instance_model.tags.join(' ')}", 
+        instance_model.title)
+  end
   def edit; end
 
   def create

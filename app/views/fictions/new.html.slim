@@ -11,6 +11,8 @@
         = f.label :url, class: "label"
         .fd
           = f.text_field :url, style: "width: 80%;"
+          span.help.block
+            = t("attributes.fiction.support")
       .form-actions
         = f.submit t_submit("save"), class: "btn blue"
 

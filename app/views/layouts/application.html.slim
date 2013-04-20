@@ -4,7 +4,7 @@ html lang="en"
     meta charset="utf-8"
     meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
     /! meta content="width=(device-width,)initial-scale=1.0" name="viewport"
-    title= "#{@title} Zhuata"
+    title= "Zhuata #{@title}"
     meta name="description" content="#{@description}"
     meta name="keywords" content="#{@keywords}"
     = csrf_meta_tags
@@ -32,7 +32,7 @@ html lang="en"
     .navbar.fixed-width
       .inner
         .container
-          = link_to "Zhuata", "#", :class => "logo"
+          = link_to "Zhuata", "/", :class => "logo"
           = menus
           = render :partial => "partials/search"
           = render :partial => "partials/user_bar"

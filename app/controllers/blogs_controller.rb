@@ -2,7 +2,7 @@
 class BlogsController < ContentController
 
   def search
-    seo_msg("个人博客查询结果", "博客 重要记录 技术 生活", "记录生活的点滴")
+    seo_msg("个人博客搜索", "博客 重要记录 技术 生活", "记录生活的点滴")
     super
   end
 
@@ -11,8 +11,4 @@ class BlogsController < ContentController
     super
   end
 
-  def show
-    seo_msg(@blog.title, "#{@blog.title} #{@blog.tags.join(' ')}", @blog.title)
-    super
-  end
 end

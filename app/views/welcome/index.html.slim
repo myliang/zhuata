@@ -1,0 +1,15 @@
+<h1>Welcome#index</h1>
+<p>Find me in app/views/welcome/index.html.erb</p>
+
+- content_for :sidebar do
+  ul.nav.stacked
+    li.active
+      a 热门标签
+    - @hot_tags.each do |tag|
+      li
+        = link_to "#{controller_name_by_type(tag._type)}/tag/#{tag.name}" do
+          strong= "#{tag.name} - #{tag_type_name(tag._type)}"
+          strong.gray-light
+            |&nbsp;&nbsp;&times;&nbsp;
+            = "#{tag.counter}"
+

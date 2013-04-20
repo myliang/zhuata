@@ -40,6 +40,7 @@ class ContentController < BaseController
       instance_model.update_read_count
     end
     @comment = Comment.new(:commentable => instance_model)
+    super
   end
 
   private
