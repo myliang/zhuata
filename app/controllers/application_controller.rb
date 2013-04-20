@@ -4,4 +4,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
+
+  def seo_msg(title, keywords, description)
+    @title = title
+    @keywords = keywords
+    @description = description
+  end
+
   end

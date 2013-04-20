@@ -11,9 +11,4 @@ class AudioBook
 
   many :chapters
 
-  before_create do |record|
-    Spider.parse(Spider::AUDIO_BOOK_HASH, record)
-  end
-
-
 end

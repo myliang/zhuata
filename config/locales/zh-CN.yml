@@ -179,7 +179,7 @@ zh-CN:
     submit:
       title: 提交%{model}
       create: 新建%{model}
-      new: 抓取%{model}
+      new: new %{model}
       save: 保存
       update: 更新
       edit: 编辑%{model}

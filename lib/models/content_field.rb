@@ -40,17 +40,15 @@ module ContentField
 
       ensure_index :user_id
 
-      before_save do |model|
-        model.tags = model.new_tags_to_a
-      end
-
       before_create do |model|
+        model.tags = model.new_tags_to_a
         model.tag_class.update_counter(model.tags, 1)
       end
 
       before_update do |model|
         old_tags = model.tags
         new_tags = model.new_tags_to_a
+        model.tags = new_tags
         model.tag_class.update_counter(new_tags - old_tags, 1)
         model.tag_class.update_counter(old_tags - new_tags, -1)
       end
