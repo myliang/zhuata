@@ -1,14 +1,36 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+ul.nav.stacked style="width: 380px; float:left; "
+  li.active
+    a = "#{t('models.fiction')}热门标签"
+  - @fiction_hot_tags.each do |tag|
+    li
+      = link_to "#{controller_name_by_type(tag._type)}/tag/#{tag.name}" do
+        strong= tag.name
+        / strong= "#{tag.name} - #{tag_type_name(tag._type)}"
+        strong.gray-light
+          |&nbsp;&nbsp;&times;&nbsp;
+          = "#{tag.counter}"
+
+ul.nav.stacked style="width: 380px; float: left; margin-left: 45px;"
+  li.active
+    a = "#{t('models.audio_book')}热门标签"
+  - @audio_book_hot_tags.each do |tag|
+    li
+      = link_to "#{controller_name_by_type(tag._type)}/tag/#{tag.name}" do
+        strong= tag.name
+        / strong= "#{tag.name} - #{tag_type_name(tag._type)}"
+        strong.gray-light
+          |&nbsp;&nbsp;&times;&nbsp;
+          = "#{tag.counter}"
 
 - content_for :sidebar do
   ul.nav.stacked
     li.active
-      a 热门标签
-    - @hot_tags.each do |tag|
+      a = "#{t('models.blog')}热门标签"
+    - @blog_hot_tags.each do |tag|
       li
         = link_to "#{controller_name_by_type(tag._type)}/tag/#{tag.name}" do
-          strong= "#{tag.name} - #{tag_type_name(tag._type)}"
+          strong= tag.name
+          / strong= "#{tag.name} - #{tag_type_name(tag._type)}"
           strong.gray-light
             |&nbsp;&nbsp;&times;&nbsp;
             = "#{tag.counter}"
