@@ -8,7 +8,7 @@ set :whenever_command, "bundle exec whenever"
 
 
 # 设置path
-set :default_environment, { "PATH" => "/opt/ruby1.8.7/bin:$PATH" }
+set :default_environment, { "PATH" => "/home/myliang/.rvm/gems/ruby-1.9.3-p392/bin:$PATH" }
 
 set :application, "zhuata"
 set :repository,  "git@github.com:myliang/zhuata.git"
