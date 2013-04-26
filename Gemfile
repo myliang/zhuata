@@ -33,7 +33,6 @@ gem 'mm-devise'
 
 # full index text
 gem 'sunspot_rails'
-gem 'sunspot_solr', '1.3.3'
 gem 'sunspot_mongo_mapper'
 
 # markdown and code heightlihgt
@@ -48,6 +47,7 @@ gem 'coderay'
 
 # rspec test
 group :development, :test do
+  gem 'sunspot_solr', '1.3.3'
   gem 'rspec-rails', '~> 2.10.0'
   gem 'capybara'
   gem 'launchy'
