@@ -33,7 +33,7 @@ gem 'mm-devise'
 
 # full index text
 gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'sunspot_solr', '1.3.3'
 gem 'sunspot_mongo_mapper'
 
 # markdown and code heightlihgt
