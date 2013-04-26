@@ -3,6 +3,27 @@
 2 rspec config
 3 rake spec (run test)
 
+# whenever
+gem 'whenever', :require => false
+wheneverize .
+
+# cap
+capify .
+
+# mongodb
+# 方法1：(推荐)
+# --fork 选项将会通知 mongod 在后台运行
+/path/to/MongoDB_Dir/bin/mongod --logpath /path/to/file.log --logappend --fork
+
+# 方法2：
+# 将输出重定向到 file.log 文件
+# & 将该进程置于后台运行
+/path/to/MongoDB_Dir/bin/mongod >> /path/to/file.log &
+
+# 还可以这样运行(不记录日志)
+# 因为所有重定向到位桶文件 /dev/null 的信息都会被丢弃
+/path/to/MongoDB_Dir/bin/mongod >> /dev/null &
+
 # spork
 1 add text "gem 'devise'" to Gefile
 1 spork --bootstrap
@@ -37,7 +58,7 @@ rails g bootstrap:layout [LAYOUT_NAME] [*ﬁxed or ﬂuid]
 ?
 # -*- encoding : utf-8 -*-
 require 'spork'
- 
+
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
@@ -46,11 +67,11 @@ Spork.prefork do
   require File.expand_path("http://www.cnblogs.com/config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
- 
+
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
- 
+
   RSpec.configure do |config|
     # ## Mock Framework
     #
@@ -59,23 +80,23 @@ Spork.prefork do
     # config.mock_with :mocha
     # config.mock_with :flexmock
     # config.mock_with :rr
- 
+
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
- 
+
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
     # instead of true.
     config.use_transactional_fixtures = true
- 
+
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
   end
- 
+
 end
- 
+
 Spork.each_run do
   # This code will be run each time you run your specs.
   load "#{Rails.root}/config/routes.rb"

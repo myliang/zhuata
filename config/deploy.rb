@@ -50,5 +50,6 @@ desc "Copy shared config files to current application."
 task :after_update_code, :roles => :app do
     # mongodb
     run "cp -f #{shared_path}/config/mongo.rb #{release_path}/config/initializers/mongo.rb"
+  run "ln -s /data/upload #{current_path}/public"
     # run "cp -f #{shared_path}/config/database.yml #{release_path}/config/"
 end
