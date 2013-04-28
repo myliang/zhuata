@@ -1,5 +1,5 @@
 # encoding=utf-8
-# require 'models/validator_url'
+require 'spider/core'
 
 module SpiderField
 
@@ -19,7 +19,8 @@ module SpiderField
           elsif self.class == AudioBook
             Spider.parse(Spider::AUDIO_BOOK_HASH, self)
           end
-        rescue
+        rescue Exception => e
+          puts ":::::exception::::#{e}"
           self.errors[:url] = "解析地址错误!!!"
           # self.errors.add :url, "解析地址错误!!"
         end

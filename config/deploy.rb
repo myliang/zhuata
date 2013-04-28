@@ -44,12 +44,14 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+
+  desc "Copy shared config files to current application."
+  task :symlink_shared, :roles => :app do
+	  # run "cp -f #{shared_path}/system/mongo.rb #{release_path}/config/initializers/mongo.rb"
+    run "rm -rf #{release_path}/public/upload"
+    run "ln -s /data/upload #{release_path}/public/upload"
+  end
 end
-#
-desc "Copy shared config files to current application."
-task :after_update_code, :roles => :app do
-    # mongodb
-    run "cp -f #{shared_path}/config/mongo.rb #{release_path}/config/initializers/mongo.rb"
-  run "ln -s /data/upload #{current_path}/public"
-    # run "cp -f #{shared_path}/config/database.yml #{release_path}/config/"
-end
+
+after 'deploy:create_symlink', 'deploy:symlink_shared'
+# after 'deploy:create_symlink' do end
