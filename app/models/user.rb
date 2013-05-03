@@ -22,6 +22,7 @@ class User
 
   ## Recoverable
   key :reset_password_sent_at,  Time
+  key :reset_password_token, String
 
   ## Rememberable
   key :remember_token, String

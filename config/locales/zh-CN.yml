@@ -17,12 +17,12 @@ zh-CN:
     fiction:
       <<: *blog
       url: "解析地址"
-      support: "支持的网站： www.xs8.com"
+      support: "支持的网站： www.xs8.cn"
       author: "作者"
     audio_book:
       <<: *blog
       url: "解析地址"
-      support: "支持的网站：www.5pts.cn"
+      support: "支持的网站：www.5tps.com"
       talker: "播音"
     user:
       avatar_file_size: "头像的大小"
