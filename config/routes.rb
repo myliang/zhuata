@@ -4,7 +4,13 @@ Zhuata::Application.routes.draw do
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  devise_for :users, :controllers => {:sessions => "devise/sessions", :registrations => "registrations"} do
+  # devise_for :users, :controllers => {
+  #   :sessions => "devise/sessions",
+  #   :passwords => "devise/passwords",
+  #   :confirmations => "devise/confirmations",
+  #   :unlocks => "devise/unlocks",
+  #   :registrations => "registrations"} do
+  devise_for :users do
     get "sign_in", :to => "devise/sessions#new", :as => :sign_in
     get "sign_up", :to => "registrations#new", :as => :sign_up
     get "sign_out", :to => "devise/sessions#destroy", :as => :sign_out
