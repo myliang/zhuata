@@ -2,13 +2,13 @@
 class FictionsController < ContentController
 
   def search
-    seo_msg("小说 刊物 书 电子书搜索", "抓取 小说 刊物 书 电子书", 
+    seo_msg("小说 刊物 书 电子书搜索", "抓取 小说 刊物 书 电子书",
             "关注 阅读自己喜欢的小说 刊物 书 电子书")
     super
   end
 
   def index
-    seo_msg("小说 刊物 书 电子书", "抓取 小说 刊物 书 电子书", 
+    seo_msg("小说 刊物 书 电子书", "抓取 小说 刊物 书 电子书",
             "关注 阅读自己喜欢的小说 刊物 书 电子书")
     super
   end
@@ -24,7 +24,7 @@ class FictionsController < ContentController
 
     if model.chapters.length >= number.to_i
       begin
-        @chapter = model.chapters[number.to_i]
+        @chapter = model.chapters[number.to_i - 1]
         @chapter.content = Spider.read(Spider::BOOK_HASH, @chapter.url)
       rescue => err
         puts "::::#{err}"

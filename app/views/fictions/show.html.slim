@@ -31,7 +31,7 @@
     .item
       ul.nav-list
         - @fiction.chapters.each do |chapter|
-          li= link_to chapter.title, "/fictions/#{@fiction.id}/chapters?page=#{chapter.number}", target: "_blank"
+          li= link_to chapter.title, "/fictions/#{@fiction.id}/chapters?page=#{chapter.number + 1}", target: "_blank"
   / .item#js-chapter-content style="display:none"
   /   = render partial: "chapter"
   .item.active
