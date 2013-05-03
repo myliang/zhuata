@@ -32,7 +32,9 @@ html lang="en"
     .navbar.fixed-width
       .inner
         .container
-          = link_to "Zhuata", "/", :class => "logo"
+          / = link_to "Zhuata", "/", :class => "logo"
+          = link_to "/", :class => "logo" do
+            = image_tag("logo.png")
           = menus
           = render :partial => "partials/search"
           = render :partial => "partials/user_bar"
