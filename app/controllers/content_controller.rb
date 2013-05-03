@@ -9,7 +9,7 @@ class ContentController < BaseController
       fulltext params[:q] do
         highlight :title
       end
-      with state: SpiderField::STATE_FINISHED
+      with :state, ContentField::STATE_FINISHED
       order_by :created_at, :desc
       paginate page: params[:page], per_page: 20
     end
