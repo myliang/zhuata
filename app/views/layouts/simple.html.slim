@@ -41,10 +41,9 @@ html lang="en"
     .wrapper
       .container.fixed-width
         / = alert
-        = yield
-        .module.border
-          .footer
-            | Copyright © #{Time.new.year} myliang
+        .module
+          = yield
+        = render partial: "partials/footer"
     /! /container
     /!
       | Javascripts

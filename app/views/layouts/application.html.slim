@@ -45,9 +45,8 @@ html lang="en"
           .sidebar
             - if content_for?(:sidebar)
               = yield :sidebar
-            .module.border
-              .footer
-                | Copyright © #{Time.new.year} myliang
+            = render partial: "partials/footer"
+
     /! /container
     /!
       | Javascripts
