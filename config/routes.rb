@@ -30,16 +30,13 @@ Zhuata::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  match 'audio_books/parse' => 'audio_books#parse' #, :as => :parse_audio_books
   #
   resources :audio_books, :fictions, :pictures, :blogs do
     collection do
       get 'search'
     end
     resources :comments, only: [:index]
-  end
-
-  resources :audio_books do
-    get 'parse', on: :collection
   end
 
   # resources :urls, only: [:index]
