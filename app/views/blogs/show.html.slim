@@ -7,7 +7,7 @@
       =link_to image_tag(user.avatar.url(:thumb)), user_path(user.id)
       .header
         =link_to user.name, user_path(user.id)
-        |&nbsp;&bull; 
+        |&nbsp;&bull;
         =link_to @blog.title, blog_path(@blog)
       ul.nav.pills.small
         - for tag in @blog.tags
@@ -27,7 +27,7 @@
             a data-method="delete" href="#{blog_path(@blog)}" rel="nofollow"
               = t("helpers.submit.delete", model: "")
   .item
-    p= raw @blog.text
+    p= raw highlighter(@blog.text)
   .item.active
     =render :partial => "comments/new"
   #js_paginate_result.items

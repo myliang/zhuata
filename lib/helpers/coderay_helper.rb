@@ -1,7 +1,9 @@
 module CoderayHelper
   def highlighter(html)
-    text.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do
-      content_tag("notextile", CodeRay.scan($3, $2).div(:css => :class))
-    end
+    html.gsub(/<code language="(.+?)">(.+?)<\/code>/m) do
+      CodeRay.scan($2, $1).div # (:line_numbers => :table)
+    end.html_safe
   end
 end
+
+
